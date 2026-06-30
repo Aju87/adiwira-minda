@@ -21,19 +21,11 @@ const progKey      = (bundleId, ageGroup) => `${bundleId}_${ageGroup}`
 
 export default function App() {
   // ── Auth ─────────────────────────────────────────────────────────────────────
-  const [user, setUser] = useState(() => {
+  const [user,      setUser]      = useState(() => {
     try { return JSON.parse(localStorage.getItem('am_auth') || 'null') } catch { return null }
   })
   const [showAdmin, setShowAdmin] = useState(false)
-  const [logoTaps,  setLogoTaps]  = useState(0)
 
-  const handleLogoTap = () => {
-    setLogoTaps(t => {
-      const next = t + 1
-      if (next >= 5) { setShowAdmin(true); return 0 }
-      return next
-    })
-  }
   const handleLogout = () => {
     localStorage.removeItem('am_auth')
     setUser(null)
@@ -218,7 +210,7 @@ export default function App() {
         <div className="cloud cloud-1" /><div className="cloud cloud-2" />
         <div className="cloud cloud-3" /><div className="cloud cloud-4" />
         <div className="cloud cloud-5" />
-        <LoginScreen onLogin={setUser} />
+        <LoginScreen onLogin={setUser} onAdmin={() => setShowAdmin(true)} />
       </div>
     )
   }
@@ -231,7 +223,7 @@ export default function App() {
         <div className="cloud cloud-3" /><div className="cloud cloud-4" />
         <div className="cloud cloud-5" />
         <header className="app-header">
-          <div className="app-logo" onClick={handleLogoTap} style={{ cursor:'pointer' }}>
+          <div className="app-logo">
             <span>⭐</span> Adiwira Minda
           </div>
           <button onClick={() => setShowAdmin(false)} style={{
@@ -259,8 +251,7 @@ export default function App() {
       <div className="cloud cloud-5" />
 
       <header className="app-header">
-        {/* Klik logo 5x untuk buka admin panel */}
-        <div className="app-logo" onClick={handleLogoTap} style={{ cursor:'pointer', userSelect:'none' }}>
+        <div className="app-logo">
           <span>⭐</span> Adiwira Minda
         </div>
         <div style={{ display:'flex', alignItems:'center', gap:8 }}>
