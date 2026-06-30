@@ -19,6 +19,27 @@ function randInt(rng, min, max) {
   return Math.floor(rng() * (max - min + 1)) + min;
 }
 
+// Fisher-Yates shuffle using seeded RNG
+function shuffle(arr, rng) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Shuffle options of a hand-crafted question and update correct index
+function shuffleQuestion(q, rng) {
+  const paired = q.options.map((opt, i) => ({ opt, isCorrect: i === q.correct }));
+  const shuffled = shuffle(paired, rng);
+  return {
+    ...q,
+    options: shuffled.map(p => p.opt),
+    correct: shuffled.findIndex(p => p.isCorrect),
+  };
+}
+
 // 4 wrong options for a given correct answer, ensuring no duplicates and no negatives
 function makeOptions(rng, correct, min, max) {
   const opts = new Set([correct]);
@@ -28,7 +49,8 @@ function makeOptions(rng, correct, min, max) {
     const candidate = correct + sign * delta;
     if (candidate !== correct && candidate >= 0 && candidate <= max * 2) opts.add(candidate);
   }
-  const arr = [...opts].sort(() => rng() - 0.5);
+  // Fisher-Yates shuffle — no more B-bias
+  const arr = shuffle([...opts], rng);
   return { options: arr.map(String), correctIndex: arr.indexOf(correct) };
 }
 
@@ -201,9 +223,9 @@ export function getQuestions(bundleId, ageGroup, level) {
   const seed = (bundleId.length * 31 + ageGroup * 7 + level) * 1000;
   const rng = seededRng(seed);
 
-  if (bundleId === 'bentuk') return [...bentukQuestions[ageGroup]].sort(() => rng() - 0.5).slice(0, 10);
-  if (bundleId === 'kbat')   return [...kbatQuestions[ageGroup]].sort(() => rng() - 0.5).slice(0, 10);
-  if (bundleId === 'pecahan') return [...pecahanQuestions[ageGroup]].sort(() => rng() - 0.5).slice(0, 10);
+  if (bundleId === 'bentuk')  return shuffle([...bentukQuestions[ageGroup]], rng).slice(0, 10).map(q => shuffleQuestion(q, rng));
+  if (bundleId === 'kbat')    return shuffle([...kbatQuestions[ageGroup]], rng).slice(0, 10).map(q => shuffleQuestion(q, rng));
+  if (bundleId === 'pecahan') return shuffle([...pecahanQuestions[ageGroup]], rng).slice(0, 10).map(q => shuffleQuestion(q, rng));
 
   // Arithmetic bundles — generate dynamically
   const questions = [];
