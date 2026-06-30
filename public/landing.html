@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adiwira Minda — Matematik KSSR Jadi Seronok!</title>
-  <meta name="description" content="Platform pembelajaran matematik #1 untuk kanak-kanak Malaysia. Seronok, interaktif & mengikut silibus KSSR." />
+  <meta name="description" content="Platform pembelajaran matematik untuk kanak-kanak Malaysia. Seronok, interaktif & mengikut silibus KSSR." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -12,781 +12,686 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #07091A;
-      --bg2:      #0D1030;
-      --gold:     #FFD166;
-      --gold2:    #FFC200;
-      --pink:     #FF6B9D;
-      --cyan:     #00E5FF;
-      --purple:   #B24BF3;
-      --white:    #FFFFFF;
-      --muted:    rgba(255,255,255,.55);
-      --card-bg:  rgba(255,255,255,.06);
-      --card-border: rgba(255,255,255,.12);
-      --display:  'Lilita One', cursive;
-      --body:     'Baloo 2', sans-serif;
+      --black:  #0A0A0A;
+      --gray:   #6B7280;
+      --light:  #F4F4F5;
+      --border: #E5E7EB;
+      --orange: #FF5E00;
+      --white:  #FFFFFF;
+      --display: 'Lilita One', cursive;
+      --body:    'Baloo 2', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--body);
-      background-color: var(--bg);
-      color: var(--white);
+      background: var(--white);
+      color: var(--black);
       overflow-x: hidden;
-      min-height: 100vh;
-    }
-
-    /* ── Background orbs ── */
-    .orb {
-      position: fixed; border-radius: 50%;
-      filter: blur(80px); pointer-events: none;
-      z-index: 0; opacity: .35;
-      animation: orbFloat ease-in-out infinite;
-    }
-    .orb1 { width:500px;height:500px;background:#B24BF3;top:-100px;left:-120px;animation-duration:18s; }
-    .orb2 { width:400px;height:400px;background:#FF6B9D;top:40%;right:-100px;animation-duration:22s;animation-delay:-8s; }
-    .orb3 { width:350px;height:350px;background:#00E5FF;bottom:-80px;left:30%;animation-duration:16s;animation-delay:-4s; }
-    @keyframes orbFloat {
-      0%,100% { transform: translateY(0) scale(1); }
-      50%      { transform: translateY(-30px) scale(1.05); }
     }
 
     /* ── Nav ── */
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 28px;
-      background: rgba(7,9,26,.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding: 0 40px; height: 64px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-family: var(--display); font-size: 1.3rem;
-      color: var(--white); text-decoration: none;
-      display: flex; align-items: center; gap: 8px;
+      font-family: var(--display); font-size: 1.2rem;
+      color: var(--black); text-decoration: none;
+      display: flex; align-items: center; gap: 7px;
     }
-    .nav-logo span { color: var(--gold); }
-    .nav-cta {
-      font-family: var(--display); font-size: .9rem;
-      color: var(--bg); background: var(--gold);
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-weight: 700; font-size: .88rem;
+      color: var(--gray); text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-btn {
+      font-family: var(--display); font-size: .88rem;
+      background: var(--black); color: var(--white);
       border: none; border-radius: 50px;
-      padding: 10px 24px; cursor: pointer;
+      padding: 10px 22px; cursor: pointer;
       text-decoration: none; display: inline-block;
-      font-weight: 700; letter-spacing: .01em;
-      transition: all .15s;
-      box-shadow: 0 4px 20px rgba(255,209,102,.4);
+      transition: background .15s;
     }
-    .nav-cta:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,209,102,.5); }
+    .nav-btn:hover { background: var(--orange); }
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+    }
 
     /* ── Hero ── */
     .hero {
-      position: relative; z-index: 1;
-      min-height: 92vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 80px 20px 60px;
+      max-width: 860px; margin: 0 auto;
+      padding: 100px 24px 80px;
+      text-align: center;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,209,102,.12);
-      border: 1.5px solid rgba(255,209,102,.35);
-      border-radius: 50px; padding: 7px 20px;
-      font-weight: 800; font-size: .82rem;
-      color: var(--gold); letter-spacing: .05em;
-      margin-bottom: 28px; text-transform: uppercase;
+    .hero-label {
+      font-weight: 800; font-size: .8rem;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--gray); margin-bottom: 28px;
+      display: block;
     }
-    .hero-emoji {
-      font-size: 5.5rem; line-height: 1; margin-bottom: 20px;
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
     .hero h1 {
       font-family: var(--display);
-      font-size: clamp(2.4rem, 7vw, 4.8rem);
-      line-height: 1.08; margin-bottom: 20px;
-      letter-spacing: -.01em;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.02; letter-spacing: -.02em;
+      color: var(--black); margin-bottom: 24px;
     }
-    .hero h1 .line1 { color: var(--white); display: block; }
-    .hero h1 .line2 {
-      display: block;
-      background: linear-gradient(135deg, var(--gold), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .hero h1 em { font-style: normal; color: var(--orange); }
     .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      font-weight: 600; color: var(--muted);
-      max-width: 560px; line-height: 1.7; margin-bottom: 36px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 600; color: var(--gray);
+      max-width: 520px; margin: 0 auto 40px;
+      line-height: 1.7;
     }
-    .hero p strong { color: rgba(255,255,255,.85); }
-    .btn-gold {
-      font-family: var(--display);
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      color: var(--bg); background: var(--gold);
-      border: none; border-radius: 16px;
-      padding: 18px 56px; cursor: pointer;
-      text-decoration: none; display: inline-block;
-      box-shadow: 0 8px 32px rgba(255,209,102,.45);
-      transition: all .15s; letter-spacing: .01em;
-      animation: glow 3s ease-in-out infinite;
+    .btn-main {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--display); font-size: 1.05rem;
+      background: var(--orange); color: var(--white);
+      border: none; border-radius: 50px;
+      padding: 16px 38px; cursor: pointer;
+      text-decoration: none;
+      transition: all .15s;
+      box-shadow: 0 2px 0 #A33A00;
     }
-    @keyframes glow {
-      0%,100% { box-shadow: 0 8px 32px rgba(255,209,102,.45); }
-      50%      { box-shadow: 0 12px 48px rgba(255,209,102,.7); }
-    }
-    .btn-gold:hover { background: var(--gold2); transform: translateY(-3px); }
-    .btn-gold:active { transform: translateY(2px); box-shadow: 0 3px 12px rgba(255,209,102,.3); }
-    .hero-note { margin-top: 16px; font-size: .82rem; font-weight: 700; color: rgba(255,255,255,.35); }
+    .btn-main:hover { background: #E05000; transform: translateY(-1px); box-shadow: 0 4px 0 #A33A00; }
+    .btn-main:active { transform: translateY(1px); box-shadow: 0 1px 0 #A33A00; }
 
-    /* ── Stats bar ── */
-    .stats-bar {
-      position: relative; z-index: 1;
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
-      background: rgba(255,255,255,.04);
-      border-top: 1px solid rgba(255,255,255,.08);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    /* ── App preview card ── */
+    .app-preview {
+      margin: 64px auto 0;
+      max-width: 680px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 32px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; text-align: left;
     }
-    .stat {
-      flex: 1; min-width: 130px;
-      padding: 28px 20px; text-align: center;
-      border-right: 1px solid rgba(255,255,255,.07);
+    .preview-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 16px;
     }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: var(--display);
-      font-size: 2.6rem; line-height: 1;
-      background: linear-gradient(135deg, var(--gold), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .preview-card .p-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+    .preview-card .p-title { font-family: var(--display); font-size: .95rem; color: var(--black); margin-bottom: 4px; }
+    .preview-card .p-sub { font-size: .75rem; font-weight: 700; color: var(--gray); }
+    .preview-wide {
+      grid-column: span 3;
+      background: var(--black);
+      border-radius: 16px; padding: 20px 22px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .stat-lbl { font-weight: 800; font-size: .78rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+    .preview-wide .pw-text { font-family: var(--display); color: var(--white); font-size: 1rem; }
+    .preview-wide .pw-num {
+      font-family: var(--display); font-size: 2rem;
+      color: var(--orange);
+    }
 
-    /* ── Generic section ── */
-    .section { position: relative; z-index: 1; padding: 80px 20px; }
-    .section-inner { max-width: 1020px; margin: 0 auto; }
-    .section-tag {
-      display: inline-block;
-      font-weight: 800; font-size: .72rem;
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid var(--border); }
+
+    /* ── Stats ── */
+    .stats {
+      display: flex; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item {
+      flex: 1; min-width: 140px;
+      padding: 36px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-n {
+      font-family: var(--display);
+      font-size: 2.8rem; color: var(--black);
+      display: block; line-height: 1;
+    }
+    .stat-l { font-size: .78rem; font-weight: 800; color: var(--gray); text-transform: uppercase; letter-spacing: .07em; margin-top: 4px; }
+
+    /* ── Section ── */
+    .section { max-width: 960px; margin: 0 auto; padding: 80px 24px; }
+    .section-label {
+      font-size: .75rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: .12em;
-      color: var(--cyan); margin-bottom: 12px;
+      color: var(--orange); margin-bottom: 12px; display: block;
     }
-    .section-h2 {
+    .section h2 {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      line-height: 1.15; margin-bottom: 12px;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.1; margin-bottom: 12px;
     }
-    .section-sub { font-weight: 600; color: var(--muted); font-size: 1rem; margin-bottom: 48px; max-width: 560px; line-height: 1.6; }
+    .section-p {
+      font-size: 1rem; font-weight: 600; color: var(--gray);
+      line-height: 1.7; margin-bottom: 52px; max-width: 500px;
+    }
 
-    /* ── Features grid ── */
+    /* ── Features ── */
     .feat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
     }
-    .feat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px; padding: 28px 22px;
-      transition: border-color .2s, transform .2s, background .2s;
+    .feat-item {
+      background: var(--white); padding: 32px 26px;
+      transition: background .15s;
     }
-    .feat-card:hover {
-      border-color: rgba(255,209,102,.4);
-      background: rgba(255,255,255,.09);
-      transform: translateY(-4px);
-    }
-    .feat-icon {
-      font-size: 2.4rem; margin-bottom: 14px;
-      display: inline-block;
-    }
-    .feat-title { font-family: var(--display); font-size: 1.05rem; margin-bottom: 8px; }
-    .feat-desc { font-weight: 600; font-size: .88rem; color: var(--muted); line-height: 1.6; }
-    .feat-pill {
-      display: inline-block; margin-top: 12px;
-      font-size: .73rem; font-weight: 800; padding: 4px 12px;
-      border-radius: 50px; background: rgba(255,209,102,.12);
-      color: var(--gold); border: 1px solid rgba(255,209,102,.25);
-      text-transform: uppercase; letter-spacing: .05em;
-    }
+    .feat-item:hover { background: var(--light); }
+    .feat-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+    .feat-title { font-family: var(--display); font-size: 1rem; margin-bottom: 6px; }
+    .feat-desc { font-size: .85rem; font-weight: 600; color: var(--gray); line-height: 1.6; }
 
     /* ── Steps ── */
-    .steps-wrap {
-      display: flex; flex-wrap: wrap; gap: 0;
-      border: 1px solid var(--card-border);
-      border-radius: 24px; overflow: hidden;
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 24px;
     }
-    .step-item {
-      flex: 1; min-width: 200px;
-      padding: 36px 24px; text-align: center;
-      border-right: 1px solid var(--card-border);
-      background: var(--card-bg);
-      transition: background .2s;
+    .step-item { padding: 4px 0; }
+    .step-num {
+      font-family: var(--display); font-size: .8rem;
+      color: var(--gray); margin-bottom: 10px; display: block;
     }
-    .step-item:last-child { border-right: none; }
-    .step-item:hover { background: rgba(255,255,255,.09); }
-    .step-num-badge {
-      width: 42px; height: 42px;
-      border-radius: 50%; margin: 0 auto 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--display); font-size: 1.2rem;
-    }
-    .sn1 { background: rgba(178,75,243,.2); border: 2px solid var(--purple); color: var(--purple); }
-    .sn2 { background: rgba(0,229,255,.12); border: 2px solid var(--cyan); color: var(--cyan); }
-    .sn3 { background: rgba(255,107,157,.12); border: 2px solid var(--pink); color: var(--pink); }
-    .sn4 { background: rgba(255,209,102,.12); border: 2px solid var(--gold); color: var(--gold); }
-    .step-icon-big { font-size: 2.6rem; margin-bottom: 10px; }
-    .step-title { font-family: var(--display); font-size: 1.05rem; margin-bottom: 6px; }
-    .step-desc { font-size: .85rem; font-weight: 600; color: var(--muted); line-height: 1.6; }
+    .step-icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+    .step-t { font-family: var(--display); font-size: 1.05rem; margin-bottom: 6px; }
+    .step-d { font-size: .85rem; font-weight: 600; color: var(--gray); line-height: 1.6; }
 
-    /* ── Demo section ── */
-    .demo-section {
-      background: linear-gradient(135deg, rgba(178,75,243,.08), rgba(0,229,255,.06));
-      border-top: 1px solid rgba(178,75,243,.2);
-      border-bottom: 1px solid rgba(0,229,255,.15);
+    /* ── Demo ── */
+    .demo-wrap {
+      background: var(--light); border: 1px solid var(--border);
+      border-radius: 24px; padding: 44px 36px; max-width: 620px; margin: 0 auto;
     }
-    .demo-box {
-      max-width: 620px; margin: 0 auto;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 28px; padding: 40px 32px;
-      backdrop-filter: blur(20px);
+    .demo-bar { display: flex; gap: 8px; margin-bottom: 32px; }
+    .d-dot {
+      flex: 1; height: 4px; border-radius: 2px;
+      background: var(--border); transition: background .3s;
     }
-    .demo-dots { display: flex; gap: 8px; justify-content: center; margin-bottom: 28px; }
-    .demo-dot {
-      width: 38px; height: 6px; border-radius: 3px;
-      background: rgba(255,255,255,.15); transition: background .3s;
+    .d-dot.active { background: var(--orange); }
+    .d-dot.done   { background: var(--black); }
+    .demo-lbl {
+      font-size: .72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--gray); margin-bottom: 10px;
     }
-    .demo-dot.active { background: var(--gold); }
-    .demo-dot.done   { background: #4ECA6F; }
-    .demo-q-label {
-      text-align: center; font-size: .78rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .1em;
-      color: var(--cyan); margin-bottom: 12px;
-    }
-    .demo-q-text {
+    .demo-q {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
-      text-align: center; margin-bottom: 28px;
-      min-height: 2.5em;
-      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 28px; min-height: 2.2em;
+      display: flex; align-items: center;
     }
     .demo-opts {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px; margin-bottom: 16px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;
     }
     .demo-opt {
-      font-family: var(--display); font-size: 1.25rem;
-      color: var(--white);
-      background: rgba(255,255,255,.08);
-      border: 1.5px solid rgba(255,255,255,.15);
-      border-radius: 14px; padding: 15px;
-      cursor: pointer; transition: all .15s;
+      font-family: var(--display); font-size: 1.3rem;
+      color: var(--black); background: var(--white);
+      border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 16px; cursor: pointer; transition: all .12s; text-align: center;
     }
-    .demo-opt:hover:not(:disabled) {
-      background: rgba(255,209,102,.15);
-      border-color: var(--gold);
-      transform: scale(1.03);
-    }
+    .demo-opt:hover:not(:disabled) { border-color: var(--black); background: var(--black); color: var(--white); }
     .demo-opt:disabled { cursor: default; }
-    .demo-opt.correct  { background: rgba(78,202,111,.2); border-color: #4ECA6F; color: #7EF5A0; }
-    .demo-opt.wrong    { background: rgba(255,107,107,.15); border-color: #FF6B6B; color: #FF9B9B; animation: shake .35s ease; }
-    .demo-opt.reveal   { background: rgba(78,202,111,.2); border-color: #4ECA6F; color: #7EF5A0; }
-    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+    .demo-opt.correct { background: #ECFDF5; border-color: #10B981; color: #065F46; }
+    .demo-opt.wrong   { background: #FEF2F2; border-color: #EF4444; color: #7F1D1D; animation: shake .3s ease; }
+    .demo-opt.reveal  { background: #ECFDF5; border-color: #10B981; color: #065F46; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
     .demo-fb {
-      text-align: center; min-height: 2rem;
-      font-family: var(--display); font-size: 1rem;
-      padding: 10px; border-radius: 10px;
-      transition: all .3s;
+      font-weight: 800; font-size: .92rem; padding: 10px 14px;
+      border-radius: 10px; min-height: 2.2rem; transition: all .2s;
     }
-    .demo-score { text-align: center; padding: 16px 0; }
-    .score-big {
-      font-family: var(--display); font-size: 4.5rem; line-height: 1;
-      background: linear-gradient(135deg, var(--gold), var(--pink));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; margin-bottom: 8px;
-    }
-    .score-msg { font-weight: 700; color: var(--muted); font-size: 1rem; margin-bottom: 6px; }
-    .score-sub { font-size: .88rem; color: rgba(255,255,255,.35); margin-bottom: 24px; }
+    .demo-score { text-align: center; padding: 10px 0; }
+    .score-big { font-family: var(--display); font-size: 5rem; line-height: 1; color: var(--black); margin-bottom: 8px; }
+    .score-msg { font-weight: 700; color: var(--gray); margin-bottom: 6px; }
+    .score-sub { font-size: .85rem; color: var(--gray); margin-bottom: 24px; }
 
     /* ── Testimonials ── */
     .testi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1px;
+      background: var(--border); border: 1px solid var(--border); border-radius: 20px; overflow: hidden;
     }
-    .testi-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px; padding: 26px 22px;
-      transition: border-color .2s, transform .2s;
-    }
-    .testi-card:hover { border-color: rgba(255,209,102,.35); transform: translateY(-4px); }
-    .testi-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 12px; }
-    .testi-quote {
-      font-weight: 600; font-size: .93rem;
-      color: rgba(255,255,255,.75); line-height: 1.7;
-      margin-bottom: 18px; font-style: italic;
-    }
-    .testi-quote::before { content: '"'; color: var(--gold); font-size: 1.6em; line-height: 0; vertical-align: -0.35em; }
-    .testi-quote::after  { content: '"'; color: var(--gold); font-size: 1.6em; line-height: 0; vertical-align: -0.35em; }
-    .testi-author { display: flex; align-items: center; gap: 12px; }
-    .testi-ava {
-      width: 42px; height: 42px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem;
-      background: rgba(255,255,255,.08);
-      border: 1.5px solid rgba(255,255,255,.12);
-    }
-    .testi-name { font-weight: 800; font-size: .88rem; }
-    .testi-role { font-size: .75rem; color: var(--muted); font-weight: 700; }
+    .testi-card { background: var(--white); padding: 28px 24px; transition: background .15s; }
+    .testi-card:hover { background: var(--light); }
+    .t-stars { font-size: .85rem; letter-spacing: 3px; color: var(--orange); margin-bottom: 12px; }
+    .t-quote { font-weight: 600; font-size: .93rem; color: var(--black); line-height: 1.7; margin-bottom: 18px; }
+    .t-author { display: flex; align-items: center; gap: 10px; }
+    .t-ava { font-size: 1.8rem; }
+    .t-name { font-weight: 800; font-size: .85rem; }
+    .t-role { font-size: .75rem; color: var(--gray); font-weight: 700; }
 
-    /* ── CTA section ── */
+    /* ── CTA ── */
     .cta-section {
-      position: relative; z-index: 1;
-      padding: 100px 20px;
-      background: linear-gradient(135deg, #0F0A2A 0%, #1A0535 50%, #0A1F35 100%);
-      border-top: 1px solid rgba(178,75,243,.2);
+      background: var(--black);
+      padding: 100px 24px;
+      text-align: center;
     }
-    .cta-inner {
-      max-width: 680px; margin: 0 auto; text-align: center;
-    }
+    .cta-inner { max-width: 640px; margin: 0 auto; }
     .cta-inner h2 {
       font-family: var(--display);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      line-height: 1.1; margin-bottom: 16px;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      color: var(--white); line-height: 1.08;
+      margin-bottom: 16px;
     }
-    .cta-inner h2 span {
-      background: linear-gradient(135deg, var(--gold), var(--pink));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .cta-inner p { font-weight: 600; color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 36px; }
+    .cta-inner h2 em { font-style: normal; color: var(--orange); }
+    .cta-inner p { font-weight: 600; color: rgba(255,255,255,.5); font-size: 1rem; line-height: 1.7; margin-bottom: 44px; }
 
-    .price-card {
-      display: inline-block;
+    .price-block {
       background: rgba(255,255,255,.06);
-      border: 1.5px solid rgba(255,209,102,.3);
-      border-radius: 20px; padding: 20px 36px;
-      margin-bottom: 32px; text-align: center;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px; padding: 28px 32px;
+      margin-bottom: 32px; display: inline-block;
+      min-width: 260px;
     }
-    .price-label { font-size: .75rem; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; }
-    .price-main { font-family: var(--display); font-size: 3rem; color: var(--white); display: block; }
-    .price-sub { font-size: .82rem; color: var(--muted); font-weight: 700; margin-top: 2px; }
+    .price-tag {
+      font-size: .72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .1em; color: rgba(255,255,255,.4); margin-bottom: 8px;
+    }
+    .price-num {
+      font-family: var(--display); font-size: 3.6rem;
+      color: var(--white); display: block; line-height: 1;
+    }
+    .price-note { font-size: .82rem; color: rgba(255,255,255,.35); font-weight: 700; margin-top: 6px; }
+    .price-badge {
+      display: inline-block; background: var(--orange);
+      color: var(--white); font-family: var(--display);
+      font-size: .75rem; border-radius: 50px;
+      padding: 4px 14px; margin-top: 10px;
+    }
 
-    .btn-gold-lg {
-      font-family: var(--display);
-      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-      color: var(--bg); background: var(--gold);
-      border: none; border-radius: 16px;
-      padding: 20px 60px; cursor: pointer;
-      text-decoration: none; display: inline-block;
-      box-shadow: 0 8px 40px rgba(255,209,102,.5);
-      transition: all .15s; letter-spacing: .01em;
-      animation: glow 3s ease-in-out infinite;
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--display); font-size: 1.1rem;
+      background: var(--white); color: var(--black);
+      border: none; border-radius: 50px;
+      padding: 17px 44px; cursor: pointer;
+      text-decoration: none; transition: all .15s;
     }
-    .btn-gold-lg:hover { background: var(--gold2); transform: translateY(-3px); box-shadow: 0 14px 48px rgba(255,209,102,.6); }
+    .btn-white:hover { background: var(--orange); color: var(--white); transform: translateY(-2px); }
 
     .btn-wa {
-      display: inline-flex; align-items: center; gap: 10px;
+      display: inline-flex; align-items: center; gap: 8px;
       background: #25D366; color: #fff;
-      font-family: var(--display); font-size: 1rem;
-      border: none; border-radius: 14px;
+      font-family: var(--display); font-size: .95rem;
+      border: none; border-radius: 50px;
       padding: 14px 30px; cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(37,211,102,.35);
-      transition: all .15s; margin-top: 14px;
+      text-decoration: none; margin-top: 12px;
+      transition: all .15s;
     }
-    .btn-wa:hover { background: #20BA5A; transform: translateY(-2px); }
+    .btn-wa:hover { background: #1DB954; transform: translateY(-1px); }
 
-    .cta-note { margin-top: 22px; font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.28); }
-    .cta-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 28px; }
-    .cta-chip {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
+    .cta-chips {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 28px;
+    }
+    .chip {
+      border: 1px solid rgba(255,255,255,.12);
       border-radius: 50px; padding: 6px 16px;
-      font-size: .8rem; font-weight: 700;
-      color: rgba(255,255,255,.6);
+      font-size: .78rem; font-weight: 700; color: rgba(255,255,255,.4);
     }
 
     /* ── Footer ── */
     footer {
-      position: relative; z-index: 1;
-      background: rgba(0,0,0,.5);
-      border-top: 1px solid rgba(255,255,255,.07);
-      text-align: center; padding: 28px 20px;
-      font-size: .82rem; font-weight: 700;
-      color: rgba(255,255,255,.35);
+      background: var(--black); border-top: 1px solid rgba(255,255,255,.07);
+      padding: 24px; text-align: center;
+      font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.3);
     }
-    footer a { color: rgba(255,255,255,.55); text-decoration: none; }
-    footer a:hover { color: var(--gold); }
+    footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+    footer a:hover { color: var(--white); }
 
-    /* ── Divider ── */
-    .divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,.07);
-      margin: 0;
-    }
-
-    /* ── Reveal animation ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .55s, transform .55s; }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* ── Responsive ── */
     @media (max-width: 600px) {
-      .steps-wrap { flex-direction: column; }
-      .step-item { border-right: none; border-bottom: 1px solid var(--card-border); }
-      .step-item:last-child { border-bottom: none; }
-      .stat { min-width: 100px; }
-      .demo-opt { font-size: 1.05rem; padding: 13px 8px; }
-      nav { padding: 14px 16px; }
+      .app-preview { grid-template-columns: 1fr 1fr; }
+      .preview-wide { grid-column: span 2; }
+      .demo-wrap { padding: 28px 20px; }
+      .demo-opts { gap: 8px; }
+      .demo-opt { font-size: 1.1rem; padding: 14px 8px; }
+      .price-block { min-width: auto; width: 100%; }
     }
   </style>
 </head>
 <body>
 
-<!-- Orbs -->
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
-
 <!-- ═══ NAV ═══ -->
 <nav>
-  <a href="https://adiwiraminda.netlify.app" class="nav-logo">
-    <span>⭐</span> Adiwira Minda
-  </a>
-  <a href="https://adiwiraminda.netlify.app" class="nav-cta">Masuk →</a>
+  <a href="https://adiwiraminda.netlify.app" class="nav-logo">⭐ Adiwira Minda</a>
+  <ul class="nav-links">
+    <li><a href="#features">Ciri-ciri</a></li>
+    <li><a href="#demo">Cuba Demo</a></li>
+    <li><a href="#testimonials">Ulasan</a></li>
+    <li><a href="#pricing">Harga</a></li>
+  </ul>
+  <a href="#pricing" class="nav-btn">Langgan Sekarang</a>
 </nav>
 
 <!-- ═══ HERO ═══ -->
-<section class="hero">
-  <div class="hero-badge">🇲🇾 Platform Matematik KSSR #1 Malaysia</div>
-  <div class="hero-emoji">🦸</div>
-  <h1>
-    <span class="line1">Anak Anda Akan</span>
-    <span class="line2">Suka Matematik!</span>
-  </h1>
-  <p>
-    Platform pembelajaran matematik paling seronok untuk kanak-kanak Malaysia.<br />
-    <strong>Interaktif, bergambar & disesuaikan mengikut umur anak anda.</strong>
-  </p>
-  <a href="https://adiwiraminda.netlify.app" class="btn-gold">⚡ Langgan Sekarang</a>
-  <p class="hero-note">✦ Akses terus selepas bayaran · ✦ Untuk semua anak dalam keluarga</p>
-</section>
+<div class="hero">
+  <span class="hero-label">Platform Matematik KSSR · Darjah 1 – 6</span>
+  <h1>Anak Anda Akan<br /><em>Suka Matematik.</em></h1>
+  <p>Platform pembelajaran matematik yang seronok, interaktif & disesuaikan mengikut umur anak anda. Mengikut silibus KSSR Malaysia.</p>
+  <a href="#pricing" class="btn-main">⚡ Langgan Sekarang</a>
 
-<!-- ═══ STATS ═══ -->
-<div class="stats-bar">
-  <div class="stat">
-    <div class="stat-num" data-count="600">0+</div>
-    <div class="stat-lbl">Soalan Matematik</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">6</div>
-    <div class="stat-lbl">Topik KSSR</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">3</div>
-    <div class="stat-lbl">Peringkat Umur</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">10</div>
-    <div class="stat-lbl">Level / Topik</div>
+  <!-- App preview cards -->
+  <div class="app-preview">
+    <div class="preview-card">
+      <span class="p-icon">🎯</span>
+      <div class="p-title">6 Topik</div>
+      <div class="p-sub">Semua topik KSSR</div>
+    </div>
+    <div class="preview-card">
+      <span class="p-icon">⭐</span>
+      <div class="p-title">Bintang</div>
+      <div class="p-sub">Sistem ganjaran</div>
+    </div>
+    <div class="preview-card">
+      <span class="p-icon">⏱️</span>
+      <div class="p-title">60 Saat</div>
+      <div class="p-sub">Timer setiap soalan</div>
+    </div>
+    <div class="preview-wide">
+      <div class="pw-text">Jumlah Soalan Matematik</div>
+      <div class="pw-num" data-count="600">0+</div>
+    </div>
   </div>
 </div>
 
-<hr class="divider" />
+<!-- ═══ STATS ═══ -->
+<div class="stats">
+  <div class="stat-item">
+    <span class="stat-n">6</span>
+    <div class="stat-l">Topik KSSR</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-n">10</span>
+    <div class="stat-l">Level / Topik</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-n">3</span>
+    <div class="stat-l">Peringkat Umur</div>
+  </div>
+  <div class="stat-item">
+    <span class="stat-n">∞</span>
+    <div class="stat-l">Akses Selamanya</div>
+  </div>
+</div>
 
 <!-- ═══ FEATURES ═══ -->
-<section class="section reveal">
-  <div class="section-inner">
-    <div class="section-tag">✦ Kenapa Adiwira Minda?</div>
-    <h2 class="section-h2">Semua Dalam Satu Platform 🎯</h2>
-    <p class="section-sub">Direka khas untuk memastikan anak anda berjaya dalam matematik — dari Darjah 1 hingga 6.</p>
-    <div class="feat-grid">
-      <div class="feat-card">
-        <div class="feat-icon">📚</div>
-        <div class="feat-title">Ikut Silibus KSSR</div>
-        <div class="feat-desc">6 topik utama — Tambah, Tolak, Darab, Bahagi, Pecahan & Bentuk. Sama persis dengan apa yang diajar di sekolah.</div>
-        <span class="feat-pill">Darjah 1–6</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🎯</div>
-        <div class="feat-title">Disesuaikan Ikut Umur</div>
-        <div class="feat-desc">Soalan berbeza untuk umur 5–7, 8–10 & 11–12 tahun. Anak anda tidak rasa terlalu mudah atau terlalu susah.</div>
-        <span class="feat-pill">3 Peringkat</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🏆</div>
-        <div class="feat-title">Sistem Bintang Ganjaran</div>
-        <div class="feat-desc">Kumpul bintang setiap jawab soalan betul. Anak anda akan teruja nak terus belajar untuk dapat lebih banyak bintang!</div>
-        <span class="feat-pill">Gamified</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">⏱️</div>
-        <div class="feat-title">Timer Gamified</div>
-        <div class="feat-desc">Jam randik 60 saat untuk setiap soalan. Latih fokus dan kelajuan berfikir — kemahiran penting untuk peperiksaan!</div>
-        <span class="feat-pill">60 Saat</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">👨‍👩‍👧‍👦</div>
-        <div class="feat-title">Profil Setiap Anak</div>
-        <div class="feat-desc">Satu akaun boleh ada banyak profil anak. Data bintang dan progres tersimpan berasingan untuk setiap anak.</div>
-        <span class="feat-pill">Multi-Anak</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">📱</div>
-        <div class="feat-title">Akses Mana-Mana</div>
-        <div class="feat-desc">Boleh guna di komputer, tablet atau telefon. Belajar di rumah, dalam kereta, atau di mana sahaja!</div>
-        <span class="feat-pill">Semua Peranti</span>
-      </div>
+<section class="section reveal" id="features">
+  <span class="section-label">Ciri-ciri</span>
+  <h2>Semua yang anak anda perlukan.</h2>
+  <p class="section-p">Direka khas untuk memastikan anak anda berjaya — dari Darjah 1 hingga Darjah 6.</p>
+  <div class="feat-grid">
+    <div class="feat-item">
+      <span class="feat-icon">📚</span>
+      <div class="feat-title">Ikut Silibus KSSR</div>
+      <div class="feat-desc">6 topik — Tambah, Tolak, Darab, Bahagi, Pecahan & Bentuk. Sama dengan apa yang diajar di sekolah.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🎯</span>
+      <div class="feat-title">Disesuaikan Ikut Umur</div>
+      <div class="feat-desc">Soalan berbeza untuk umur 5–7, 8–10 & 11–12 tahun. Tahap yang sesuai untuk setiap anak.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">🏆</span>
+      <div class="feat-title">Sistem Bintang</div>
+      <div class="feat-desc">Kumpul bintang setiap jawab betul. Anak anda akan teruja nak terus belajar untuk dapat lebih banyak bintang.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">👨‍👩‍👧‍👦</span>
+      <div class="feat-title">Profil Setiap Anak</div>
+      <div class="feat-desc">Satu akaun, banyak anak. Data bintang dan progres tersimpan berasingan untuk setiap anak.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">⏱️</span>
+      <div class="feat-title">Timer Gamified</div>
+      <div class="feat-desc">60 saat setiap soalan. Latih fokus dan kelajuan berfikir — penting untuk peperiksaan.</div>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">📱</span>
+      <div class="feat-title">Akses Mana-Mana</div>
+      <div class="feat-desc">Guna di komputer, tablet atau telefon. Belajar di rumah atau dalam perjalanan.</div>
     </div>
   </div>
 </section>
 
-<hr class="divider" />
+<hr />
 
 <!-- ═══ HOW IT WORKS ═══ -->
 <section class="section reveal">
-  <div class="section-inner">
-    <div class="section-tag">✦ Cara Bermula</div>
-    <h2 class="section-h2">Siap Dalam 2 Minit 🚀</h2>
-    <p class="section-sub">Proses yang mudah — langgan, dapat kod, terus guna.</p>
-    <div class="steps-wrap">
-      <div class="step-item">
-        <div class="step-num-badge sn1">1</div>
-        <div class="step-icon-big">💳</div>
-        <div class="step-title">Buat Bayaran</div>
-        <div class="step-desc">Hantar resit ke WhatsApp kami. Kami jana kod akses untuk anda dalam masa singkat.</div>
-      </div>
-      <div class="step-item">
-        <div class="step-num-badge sn2">2</div>
-        <div class="step-icon-big">🔑</div>
-        <div class="step-title">Dapat Kod Akses</div>
-        <div class="step-desc">Masukkan nombor WhatsApp & kod di skrin login. Terus boleh akses semua kandungan!</div>
-      </div>
-      <div class="step-item">
-        <div class="step-num-badge sn3">3</div>
-        <div class="step-icon-big">🦸</div>
-        <div class="step-title">Buat Profil Anak</div>
-        <div class="step-desc">Pilih nama, ikon & umur anak. Sistem akan susun soalan mengikut tahap mereka secara automatik.</div>
-      </div>
-      <div class="step-item">
-        <div class="step-num-badge sn4">4</div>
-        <div class="step-icon-big">⭐</div>
-        <div class="step-title">Mula Belajar!</div>
-        <div class="step-desc">Pilih topik, jawab soalan, kumpul bintang. Seronok dijamin — anak anda minta buat lagi!</div>
-      </div>
+  <span class="section-label">Cara Bermula</span>
+  <h2>Siap dalam 2 minit.</h2>
+  <p class="section-p">Proses yang mudah — bayar sekali, guna selamanya.</p>
+  <div class="steps-grid">
+    <div class="step-item">
+      <span class="step-num">01</span>
+      <span class="step-icon">💳</span>
+      <div class="step-t">Buat Bayaran</div>
+      <div class="step-d">Hantar resit ke WhatsApp kami. Kami jana kod akses untuk anda dengan segera.</div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">02</span>
+      <span class="step-icon">🔑</span>
+      <div class="step-t">Dapat Kod Akses</div>
+      <div class="step-d">Masukkan nombor WhatsApp & kod di skrin login. Terus boleh akses semua kandungan.</div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">03</span>
+      <span class="step-icon">🦸</span>
+      <div class="step-t">Buat Profil Anak</div>
+      <div class="step-d">Pilih nama, ikon & umur anak. Soalan akan disusun mengikut tahap mereka.</div>
+    </div>
+    <div class="step-item">
+      <span class="step-num">04</span>
+      <span class="step-icon">⭐</span>
+      <div class="step-t">Mula Belajar</div>
+      <div class="step-d">Pilih topik, jawab soalan, kumpul bintang. Seronok dijamin.</div>
     </div>
   </div>
 </section>
+
+<hr />
 
 <!-- ═══ DEMO ═══ -->
-<section class="section demo-section reveal">
-  <div class="section-inner">
-    <div style="text-align:center">
-      <div class="section-tag">✦ Cuba Sendiri</div>
-      <h2 class="section-h2">Rasa Sendiri Keseronokannya 🎮</h2>
-      <p class="section-sub" style="margin:0 auto 40px;">3 soalan contoh — sama seperti pengalaman sebenar dalam app</p>
+<section class="section reveal" id="demo">
+  <div style="text-align:center; margin-bottom:48px;">
+    <span class="section-label">Demo Percuma</span>
+    <h2>Cuba 3 soalan sekarang.</h2>
+    <p class="section-p" style="margin:0 auto;">Rasa sendiri betapa seronoknya belajar dengan Adiwira Minda.</p>
+  </div>
+  <div class="demo-wrap">
+    <div class="demo-bar">
+      <div class="d-dot active" id="dot0"></div>
+      <div class="d-dot" id="dot1"></div>
+      <div class="d-dot" id="dot2"></div>
     </div>
-    <div class="demo-box">
-      <div class="demo-dots">
-        <div class="demo-dot active" id="dot0"></div>
-        <div class="demo-dot" id="dot1"></div>
-        <div class="demo-dot" id="dot2"></div>
-      </div>
-      <div class="demo-q-label" id="demo-label">🏅 Darjah 3 · Tambah</div>
-      <div class="demo-q-text" id="demo-question">45 + 28 = ?</div>
-      <div class="demo-opts" id="demo-opts">
-        <button class="demo-opt" onclick="checkAnswer(this, false)">70</button>
-        <button class="demo-opt" onclick="checkAnswer(this, true)">73</button>
-        <button class="demo-opt" onclick="checkAnswer(this, false)">75</button>
-        <button class="demo-opt" onclick="checkAnswer(this, false)">68</button>
-      </div>
-      <div class="demo-fb" id="demo-fb"></div>
+    <div class="demo-lbl" id="demo-lbl">Darjah 3 · Tambah</div>
+    <div class="demo-q" id="demo-q">45 + 28 = ?</div>
+    <div class="demo-opts" id="demo-opts">
+      <button class="demo-opt" onclick="ans(this,false)">70</button>
+      <button class="demo-opt" onclick="ans(this,true)">73</button>
+      <button class="demo-opt" onclick="ans(this,false)">75</button>
+      <button class="demo-opt" onclick="ans(this,false)">68</button>
     </div>
+    <div class="demo-fb" id="demo-fb"></div>
   </div>
 </section>
 
-<hr class="divider" />
+<hr />
 
 <!-- ═══ TESTIMONIALS ═══ -->
-<section class="section reveal">
-  <div class="section-inner">
-    <div class="section-tag">✦ Apa Kata Ibu Bapa</div>
-    <h2 class="section-h2">Mereka Sudah Merasainya 💬</h2>
-    <p class="section-sub">Keluarga Malaysia yang sudah guna Adiwira Minda berkongsi pengalaman mereka.</p>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Anak saya yang dulunya benci matematik, sekarang minta belajar sendiri setiap malam! Markah dia naik dari 58 ke 92 dalam masa 2 bulan.</p>
-        <div class="testi-author">
-          <div class="testi-ava">👩</div>
-          <div>
-            <div class="testi-name">Puan Aisyah Mohd Nor</div>
-            <div class="testi-role">Ibu kepada pelajar Darjah 3, Shah Alam</div>
-          </div>
+<section class="section reveal" id="testimonials">
+  <span class="section-label">Ulasan</span>
+  <h2>Ibu bapa sudah merasainya.</h2>
+  <p class="section-p">Keluarga Malaysia yang sudah guna Adiwira Minda berkongsi pengalaman mereka.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Anak saya yang dulunya benci matematik, sekarang minta belajar sendiri setiap malam. Markah dia naik dari 58 ke 92 dalam masa 2 bulan."</p>
+      <div class="t-author">
+        <div class="t-ava">👩</div>
+        <div>
+          <div class="t-name">Puan Aisyah Mohd Nor</div>
+          <div class="t-role">Ibu, pelajar Darjah 3 — Shah Alam</div>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Saya ada 3 orang anak sekolah rendah. Boleh guna satu akaun untuk semua anak dengan profil berasingan. Sangat berbaloi!</p>
-        <div class="testi-author">
-          <div class="testi-ava">👨</div>
-          <div>
-            <div class="testi-name">Encik Faizal Hashim</div>
-            <div class="testi-role">Bapa kepada 3 anak, Johor Bahru</div>
-          </div>
+    </div>
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Ada 3 anak sekolah rendah — boleh guna satu akaun untuk semua dengan profil berasingan. Bayar sekali, tiga anak guna. Sangat berbaloi!"</p>
+      <div class="t-author">
+        <div class="t-ava">👨</div>
+        <div>
+          <div class="t-name">Encik Faizal Hashim</div>
+          <div class="t-role">Bapa, 3 anak — Johor Bahru</div>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Sebagai guru matematik, saya recommend platform ini. Soalannya sesuai dengan silibus KSSR dan cara penyampaiannya sangat kreatif!</p>
-        <div class="testi-author">
-          <div class="testi-ava">👩‍🏫</div>
-          <div>
-            <div class="testi-name">Cikgu Azlina Razali</div>
-            <div class="testi-role">Guru Matematik SK, Penang</div>
-          </div>
+    </div>
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Sebagai guru matematik, saya syor platform ini kepada semua ibu bapa. Soalannya tepat mengikut silibus KSSR, cara penyampaian sangat kreatif."</p>
+      <div class="t-author">
+        <div class="t-ava">👩‍🏫</div>
+        <div>
+          <div class="t-name">Cikgu Azlina Razali</div>
+          <div class="t-role">Guru Matematik SK — Penang</div>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Anak saya dapat A dalam matematik UPSR lepas guna Adiwira Minda selama 6 bulan. Alhamdulillah, terima kasih banyak-banyak!</p>
-        <div class="testi-author">
-          <div class="testi-ava">👩</div>
-          <div>
-            <div class="testi-name">Puan Nurul Huda</div>
-            <div class="testi-role">Ibu kepada pelajar UPSR, Kuala Lumpur</div>
-          </div>
+    </div>
+    <div class="testi-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Anak saya dapat A dalam matematik UPSR lepas guna Adiwira Minda selama 6 bulan. Alhamdulillah, terima kasih banyak-banyak!"</p>
+      <div class="t-author">
+        <div class="t-ava">👩</div>
+        <div>
+          <div class="t-name">Puan Nurul Huda</div>
+          <div class="t-role">Ibu, pelajar UPSR — Kuala Lumpur</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CTA ═══ -->
-<section class="cta-section">
+<!-- ═══ CTA / PRICING ═══ -->
+<section class="cta-section" id="pricing">
   <div class="cta-inner reveal">
-    <div style="font-size:3.5rem;animation:float 4s ease-in-out infinite;margin-bottom:20px;">🎯</div>
-    <h2>Mulakan Perjalanan Matematik<br/><span>Anak Anda Hari Ini!</span></h2>
-    <p>
-      Jangan biar anak anda ketinggalan. Setiap hari tanpa latihan adalah peluang yang terlepas.<br />
-      <strong style="color:rgba(255,255,255,.8)">Langgan sekarang dan lihat perbezaannya dalam masa 30 hari!</strong>
-    </p>
+    <h2>Mulakan hari ini.<br /><em>Bayar sekali. Milik selamanya.</em></h2>
+    <p>Tiada langganan bulanan, tiada caj tersembunyi. Bayar satu kali dan akses semua kandungan untuk semua anak anda selama-lamanya.</p>
 
-    <div class="price-card">
-      <div class="price-label">Harga Langganan</div>
-      <span class="price-main">RM 29.90</span>
-      <div class="price-sub">/ bulan · Untuk semua anak dalam keluarga</div>
+    <div class="price-block">
+      <div class="price-tag">Bayaran Satu Kali</div>
+      <span class="price-num">RM 49.90</span>
+      <div class="price-note">Akses penuh · Semua anak · Selamanya</div>
+      <div><span class="price-badge">✦ Tiada Langganan Bulanan</span></div>
     </div>
 
     <div>
-      <a href="https://adiwiraminda.netlify.app" class="btn-gold-lg">⚡ Langgan Sekarang</a>
+      <a href="https://adiwiraminda.netlify.app" class="btn-white">⚡ Langgan Sekarang</a>
     </div>
-
     <div>
-      <a href="https://wa.me/60198555878?text=Saya%20berminat%20untuk%20langgan%20Adiwira%20Minda!%20Boleh%20tolong%20hantarkan%20maklumat%20pembayaran%3F" class="btn-wa" target="_blank">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <a href="https://wa.me/60198555878?text=Saya%20berminat%20untuk%20dapatkan%20Adiwira%20Minda!%20Boleh%20tolong%20hantarkan%20maklumat%20pembayaran%3F" class="btn-wa" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Hubungi via WhatsApp
       </a>
     </div>
 
     <div class="cta-chips">
-      <span class="cta-chip">🔒 Kod akses terus dihantar</span>
-      <span class="cta-chip">📞 Sokongan via WhatsApp</span>
-      <span class="cta-chip">👨‍👩‍👧 Semua anak dalam 1 akaun</span>
+      <span class="chip">🔒 Kod akses terus dihantar</span>
+      <span class="chip">👨‍👩‍👧 Semua anak, satu akaun</span>
+      <span class="chip">📞 Sokongan via WhatsApp</span>
     </div>
   </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <p>© 2025 <strong style="color:rgba(255,255,255,.6)">Adiwira Minda</strong> · Platform Matematik KSSR Malaysia</p>
-  <p style="margin-top:6px">
-    <a href="https://adiwiraminda.netlify.app">adiwiraminda.netlify.app</a>
-    &nbsp;·&nbsp;
-    <a href="https://wa.me/60198555878">WhatsApp: 019-855 5878</a>
+  <p>© 2025 <strong>Adiwira Minda</strong> · Platform Matematik KSSR Malaysia &nbsp;·&nbsp;
+    <a href="https://adiwiraminda.netlify.app">adiwiraminda.netlify.app</a> &nbsp;·&nbsp;
+    <a href="https://wa.me/60198555878">019-855 5878</a>
   </p>
 </footer>
 
 <script>
 // ── Demo ─────────────────────────────────────────────────────────────────────
 const QS = [
-  { q:'45 + 28 = ?', lbl:'🏅 Darjah 3 · Tambah',
+  { q:'45 + 28 = ?', lbl:'Darjah 3 · Tambah',
     opts:[{t:'70',c:false},{t:'73',c:true},{t:'75',c:false},{t:'68',c:false}] },
-  { q:'7 × 8 = ?',   lbl:'🏅 Darjah 4 · Darab',
+  { q:'7 × 8 = ?', lbl:'Darjah 4 · Darab',
     opts:[{t:'54',c:false},{t:'63',c:false},{t:'56',c:true},{t:'48',c:false}] },
-  { q:'100 − 37 = ?',lbl:'🏅 Darjah 3 · Tolak',
+  { q:'100 − 37 = ?', lbl:'Darjah 3 · Tolak',
     opts:[{t:'73',c:false},{t:'63',c:true},{t:'67',c:false},{t:'53',c:false}] },
 ]
 let cur = 0, score = 0
 
-function checkAnswer(btn, ok) {
+function ans(btn, ok) {
   document.querySelectorAll('.demo-opt').forEach(b => b.disabled = true)
+  const fb = document.getElementById('demo-fb')
   if (ok) {
     btn.classList.add('correct')
-    feedback('✅ Betul! Tahniah! +10 ⭐', 'rgba(78,202,111,.15)', '#7EF5A0')
+    fb.textContent = '✅ Betul! +10 ⭐'
+    fb.style.background = '#ECFDF5'; fb.style.color = '#065F46'
     score++
   } else {
     btn.classList.add('wrong')
     document.querySelectorAll('.demo-opt').forEach(b => {
       if (b.onclick.toString().includes('true')) b.classList.add('reveal')
     })
-    feedback('❌ Salah — soalan seterusnya!', 'rgba(255,107,107,.12)', '#FF9B9B')
+    fb.textContent = '❌ Salah — soalan seterusnya!'
+    fb.style.background = '#FEF2F2'; fb.style.color = '#7F1D1D'
   }
-  document.getElementById('dot'+cur).classList.replace('active','done')
-  setTimeout(() => { cur < 2 ? loadQ(++cur) : showScore() }, 1400)
-}
-
-function feedback(msg, bg, color) {
-  const el = document.getElementById('demo-fb')
-  el.textContent = msg; el.style.background = bg; el.style.color = color
+  const d = document.getElementById('dot'+cur)
+  d.classList.remove('active'); d.classList.add('done')
+  setTimeout(() => { cur < 2 ? loadQ(++cur) : showScore() }, 1300)
 }
 
 function loadQ(i) {
   const q = QS[i]
-  document.getElementById('demo-question').textContent = q.q
-  document.getElementById('demo-label').textContent = q.lbl
+  document.getElementById('demo-q').textContent  = q.q
+  document.getElementById('demo-lbl').textContent = q.lbl
   const fb = document.getElementById('demo-fb')
   fb.textContent = ''; fb.style.background = ''
-  const box = document.getElementById('demo-opts')
-  box.innerHTML = ''
+  const box = document.getElementById('demo-opts'); box.innerHTML = ''
   q.opts.forEach(o => {
     const b = document.createElement('button')
     b.className = 'demo-opt'; b.textContent = o.t
-    b.onclick = () => checkAnswer(b, o.c); box.appendChild(b)
+    b.onclick = () => ans(b, o.c); box.appendChild(b)
   })
-  const dot = document.getElementById('dot'+i)
-  if (dot) dot.classList.add('active')
+  document.getElementById('dot'+i).classList.add('active')
 }
 
 function showScore() {
   const e = score===3?'🎉':score===2?'😊':'💪'
-  const m = score===3?'Sempurna! Anak anda berbakat!':score===2?'Bagus! Terus berlatih!':'Jangan putus asa! Teruskan belajar!'
-  document.querySelector('.demo-box').innerHTML = `
+  const m = score===3?'Sempurna!':score===2?'Bagus! Terus berlatih!':'Jangan putus asa!'
+  document.querySelector('.demo-wrap').innerHTML = `
     <div class="demo-score">
-      <div style="font-size:3.5rem;margin-bottom:10px;animation:float 4s ease-in-out infinite">${e}</div>
+      <div style="font-size:3.5rem;margin-bottom:10px">${e}</div>
       <div class="score-big">${score}/3</div>
       <p class="score-msg">${m}</p>
-      <p class="score-sub">Ada <strong style="color:rgba(255,255,255,.6)">600+ soalan</strong> lagi menunggu dalam Adiwira Minda!</p>
-      <a href="https://adiwiraminda.netlify.app" class="btn-gold" style="font-size:1.05rem;padding:15px 38px;">⚡ Langgan Sekarang</a>
+      <p class="score-sub">Ada 600+ soalan lagi dalam Adiwira Minda!</p>
+      <a href="#pricing" class="btn-main" style="font-size:1rem;padding:14px 32px;">⚡ Langgan Sekarang</a>
     </div>`
 }
 
-// ── Scroll reveal ─────────────────────────────────────────────────────────────
+// ── Reveal ──────────────────────────────────────────────────────────────────
 const obs = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target) } })
-}, { threshold: 0.1 })
+}, { threshold: 0.08 })
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
 
-// ── Count-up ──────────────────────────────────────────────────────────────────
+// ── Count-up ─────────────────────────────────────────────────────────────────
 const cObs = new IntersectionObserver(es => {
   es.forEach(e => {
     if (!e.isIntersecting) return
     const el = e.target, end = parseInt(el.dataset.count)
     let n = 0; const step = Math.ceil(end/50)
-    const t = setInterval(() => { n = Math.min(n+step,end); el.textContent=n+'+'; if(n>=end) clearInterval(t) }, 28)
+    const t = setInterval(() => { n=Math.min(n+step,end); el.textContent=n+'+'; if(n>=end)clearInterval(t) }, 28)
     cObs.unobserve(el)
   })
 }, { threshold: 0.5 })
