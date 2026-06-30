@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { redeemCode, normalizeWA } from '../lib/supabase'
 
-export default function LoginScreen({ onLogin, onAdmin }) {
+export default function LoginScreen({ onLogin }) {
   const [wa,      setWa]      = useState('')
   const [code,    setCode]    = useState('')
   const [loading, setLoading] = useState(false)
@@ -195,25 +195,6 @@ export default function LoginScreen({ onLogin, onAdmin }) {
           Hubungi admin untuk dapatkan akses. 📲
         </p>
       </div>
-
-      {/* Admin link */}
-      <button
-        onClick={onAdmin}
-        style={{
-          marginTop: 16,
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          fontSize: '.75rem',
-          color: 'rgba(0,60,80,.4)',
-          fontFamily: 'var(--font-body)',
-          fontWeight: 600,
-          textDecoration: 'underline',
-          padding: '4px 8px',
-        }}
-      >
-        ⚙️ Admin Panel
-      </button>
 
       {/* Bottom note */}
       <p style={{

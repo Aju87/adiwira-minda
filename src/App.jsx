@@ -21,10 +21,9 @@ const progKey      = (bundleId, ageGroup) => `${bundleId}_${ageGroup}`
 
 export default function App() {
   // ── Auth ─────────────────────────────────────────────────────────────────────
-  const [user,      setUser]      = useState(() => {
+  const [user, setUser] = useState(() => {
     try { return JSON.parse(localStorage.getItem('am_auth') || 'null') } catch { return null }
   })
-  const [showAdmin, setShowAdmin] = useState(false)
 
   const handleLogout = () => {
     localStorage.removeItem('am_auth')
@@ -203,6 +202,34 @@ export default function App() {
     }
   }
 
+  // ── /admin route — terus tunjuk admin panel tanpa perlu login ───────────────
+  if (window.location.pathname === '/admin') {
+    return (
+      <div className="sky-bg">
+        <div className="cloud cloud-1" /><div className="cloud cloud-2" />
+        <div className="cloud cloud-3" /><div className="cloud cloud-4" />
+        <div className="cloud cloud-5" />
+        <header className="app-header">
+          <div className="app-logo"><span>⭐</span> Adiwira Minda</div>
+          <a
+            href="/"
+            style={{
+              background:'rgba(255,255,255,.7)', border:'2px solid rgba(255,255,255,.9)',
+              borderRadius:50, padding:'7px 16px',
+              fontFamily:'var(--font-body)', fontWeight:700, fontSize:'.85rem',
+              cursor:'pointer', color:'#334', textDecoration:'none',
+            }}
+          >
+            ← Balik ke App
+          </a>
+        </header>
+        <div className="page page-enter">
+          <AdminPanel onBack={() => window.location.href = '/'} />
+        </div>
+      </div>
+    )
+  }
+
   // ── Not logged in → show login screen ────────────────────────────────────────
   if (!user) {
     return (
@@ -210,34 +237,7 @@ export default function App() {
         <div className="cloud cloud-1" /><div className="cloud cloud-2" />
         <div className="cloud cloud-3" /><div className="cloud cloud-4" />
         <div className="cloud cloud-5" />
-        <LoginScreen onLogin={setUser} onAdmin={() => setShowAdmin(true)} />
-      </div>
-    )
-  }
-
-  // ── Admin panel (klik logo ⭐ 5x) ─────────────────────────────────────────
-  if (showAdmin) {
-    return (
-      <div className="sky-bg">
-        <div className="cloud cloud-1" /><div className="cloud cloud-2" />
-        <div className="cloud cloud-3" /><div className="cloud cloud-4" />
-        <div className="cloud cloud-5" />
-        <header className="app-header">
-          <div className="app-logo">
-            <span>⭐</span> Adiwira Minda
-          </div>
-          <button onClick={() => setShowAdmin(false)} style={{
-            background:'rgba(255,255,255,.7)', border:'2px solid rgba(255,255,255,.9)',
-            borderRadius:50, padding:'7px 16px',
-            fontFamily:'var(--font-body)', fontWeight:700, fontSize:'.85rem',
-            cursor:'pointer', color:'#334',
-          }}>
-            ← Balik ke App
-          </button>
-        </header>
-        <div className="page page-enter">
-          <AdminPanel onBack={() => setShowAdmin(false)} />
-        </div>
+        <LoginScreen onLogin={setUser} />
       </div>
     )
   }
