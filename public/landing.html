@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adiwira Minda — Matematik KSSR Jadi Seronok!</title>
-  <meta name="description" content="Platform pembelajaran matematik #1 untuk kanak-kanak Malaysia. Seronok, interaktif & mengikut silibus KSSR. Cuba percuma sekarang!" />
+  <meta name="description" content="Platform pembelajaran matematik #1 untuk kanak-kanak Malaysia. Seronok, interaktif & mengikut silibus KSSR." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -12,771 +12,785 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sky1: #87CEEB;
-      --sky2: #B8E4F7;
-      --orange: #FF8C00;
-      --orange-dark: #B83D00;
-      --teal: #006080;
-      --navy: #1A2A4A;
-      --display: 'Lilita One', cursive;
-      --body: 'Baloo 2', sans-serif;
+      --bg:       #07091A;
+      --bg2:      #0D1030;
+      --gold:     #FFD166;
+      --gold2:    #FFC200;
+      --pink:     #FF6B9D;
+      --cyan:     #00E5FF;
+      --purple:   #B24BF3;
+      --white:    #FFFFFF;
+      --muted:    rgba(255,255,255,.55);
+      --card-bg:  rgba(255,255,255,.06);
+      --card-border: rgba(255,255,255,.12);
+      --display:  'Lilita One', cursive;
+      --body:     'Baloo 2', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--body);
-      background: linear-gradient(180deg, #87CEEB 0%, #B8E4F7 40%, #D4F0FF 100%);
-      min-height: 100vh;
-      color: var(--navy);
+      background-color: var(--bg);
+      color: var(--white);
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
-    /* ── Clouds ── */
-    .cloud {
-      position: fixed;
-      background: #fff;
-      border-radius: 50px;
-      opacity: .75;
-      pointer-events: none;
-      z-index: 0;
-      animation: floatCloud linear infinite;
+    /* ── Background orbs ── */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(80px); pointer-events: none;
+      z-index: 0; opacity: .35;
+      animation: orbFloat ease-in-out infinite;
     }
-    .cloud::before, .cloud::after {
-      content: '';
-      position: absolute;
-      background: inherit;
-      border-radius: 50%;
-    }
-    .c1 { width:160px;height:50px;top:8%;left:-180px;animation-duration:28s; }
-    .c1::before { width:80px;height:70px;top:-30px;left:20px; }
-    .c1::after  { width:60px;height:55px;top:-20px;left:70px; }
-    .c2 { width:220px;height:65px;top:22%;left:-240px;animation-duration:36s;animation-delay:-12s; }
-    .c2::before { width:100px;height:90px;top:-40px;left:30px; }
-    .c2::after  { width:80px;height:70px;top:-28px;left:110px; }
-    .c3 { width:130px;height:42px;top:55%;left:-160px;animation-duration:22s;animation-delay:-6s; }
-    .c3::before { width:65px;height:58px;top:-26px;left:15px; }
-    .c3::after  { width:50px;height:45px;top:-18px;left:60px; }
-    @keyframes floatCloud {
-      from { transform: translateX(0); }
-      to   { transform: translateX(calc(100vw + 300px)); }
+    .orb1 { width:500px;height:500px;background:#B24BF3;top:-100px;left:-120px;animation-duration:18s; }
+    .orb2 { width:400px;height:400px;background:#FF6B9D;top:40%;right:-100px;animation-duration:22s;animation-delay:-8s; }
+    .orb3 { width:350px;height:350px;background:#00E5FF;bottom:-80px;left:30%;animation-duration:16s;animation-delay:-4s; }
+    @keyframes orbFloat {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-30px) scale(1.05); }
     }
 
     /* ── Nav ── */
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 24px;
-      background: rgba(135,206,235,.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1.5px solid rgba(255,255,255,.6);
+      padding: 16px 28px;
+      background: rgba(7,9,26,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
     .nav-logo {
-      font-family: var(--display);
-      font-size: 1.35rem;
-      color: var(--navy);
-      text-shadow: 0 2px 0 rgba(255,255,255,.8);
-      text-decoration: none;
-      display: flex; align-items: center; gap: 6px;
+      font-family: var(--display); font-size: 1.3rem;
+      color: var(--white); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
     }
+    .nav-logo span { color: var(--gold); }
     .nav-cta {
-      font-family: var(--display);
-      font-size: .95rem;
-      color: #fff;
-      background: linear-gradient(160deg, #FF8C00, #FF5E00);
+      font-family: var(--display); font-size: .9rem;
+      color: var(--bg); background: var(--gold);
       border: none; border-radius: 50px;
-      padding: 10px 22px;
-      cursor: pointer; text-decoration: none;
-      box-shadow: 0 5px 0 var(--orange-dark);
-      transition: transform .1s, box-shadow .1s;
-      display: inline-block;
+      padding: 10px 24px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      font-weight: 700; letter-spacing: .01em;
+      transition: all .15s;
+      box-shadow: 0 4px 20px rgba(255,209,102,.4);
     }
-    .nav-cta:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--orange-dark); }
-
-    /* ── Sections ── */
-    section { position: relative; z-index: 1; }
+    .nav-cta:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,209,102,.5); }
 
     /* ── Hero ── */
     .hero {
-      min-height: 90vh;
+      position: relative; z-index: 1;
+      min-height: 92vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      text-align: center; padding: 60px 20px 40px;
+      text-align: center; padding: 80px 20px 60px;
     }
-    .badge {
+    .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,.75); border: 2px solid rgba(255,255,255,.9);
-      border-radius: 50px; padding: 6px 18px;
+      background: rgba(255,209,102,.12);
+      border: 1.5px solid rgba(255,209,102,.35);
+      border-radius: 50px; padding: 7px 20px;
       font-weight: 800; font-size: .82rem;
-      color: var(--teal); letter-spacing: .03em;
-      margin-bottom: 20px;
+      color: var(--gold); letter-spacing: .05em;
+      margin-bottom: 28px; text-transform: uppercase;
     }
-    .hero-icon {
-      font-size: 6rem; line-height: 1;
-      animation: heroFloat 4s ease-in-out infinite;
-      margin-bottom: 16px;
+    .hero-emoji {
+      font-size: 5.5rem; line-height: 1; margin-bottom: 20px;
+      animation: float 4s ease-in-out infinite;
     }
-    @keyframes heroFloat {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-14px); }
-    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
     .hero h1 {
       font-family: var(--display);
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      color: var(--navy);
-      text-shadow: 0 4px 0 rgba(255,255,255,.9), 0 8px 24px rgba(0,0,0,.12);
-      line-height: 1.1; margin-bottom: 16px;
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      line-height: 1.08; margin-bottom: 20px;
+      letter-spacing: -.01em;
     }
-    .hero h1 span { color: #FF5E00; }
+    .hero h1 .line1 { color: var(--white); display: block; }
+    .hero h1 .line2 {
+      display: block;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      font-weight: 700; color: var(--teal);
-      max-width: 560px; line-height: 1.6; margin-bottom: 32px;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 600; color: var(--muted);
+      max-width: 560px; line-height: 1.7; margin-bottom: 36px;
     }
-    .btn-primary {
+    .hero p strong { color: rgba(255,255,255,.85); }
+    .btn-gold {
       font-family: var(--display);
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: #fff;
-      background: linear-gradient(160deg, #FF8C00, #FF5E00);
-      border: 3px solid rgba(255,255,255,.35);
-      border-radius: 20px; padding: 18px 52px;
-      cursor: pointer; text-decoration: none;
-      box-shadow: 0 10px 0 var(--orange-dark), 0 16px 40px rgba(255,90,0,.4);
-      transition: transform .12s, box-shadow .12s, filter .12s;
-      animation: pulse 2.5s ease-in-out infinite;
-      display: inline-block;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: var(--bg); background: var(--gold);
+      border: none; border-radius: 16px;
+      padding: 18px 56px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      box-shadow: 0 8px 32px rgba(255,209,102,.45);
+      transition: all .15s; letter-spacing: .01em;
+      animation: glow 3s ease-in-out infinite;
     }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50%      { transform: scale(1.03); }
+    @keyframes glow {
+      0%,100% { box-shadow: 0 8px 32px rgba(255,209,102,.45); }
+      50%      { box-shadow: 0 12px 48px rgba(255,209,102,.7); }
     }
-    .btn-primary:hover { filter: brightness(1.08); }
-    .btn-primary:active { transform: translateY(8px); box-shadow: 0 2px 0 var(--orange-dark); animation: none; }
-    .hero-sub { margin-top: 16px; font-size: .85rem; font-weight: 700; color: rgba(0,60,80,.6); }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-3px); }
+    .btn-gold:active { transform: translateY(2px); box-shadow: 0 3px 12px rgba(255,209,102,.3); }
+    .hero-note { margin-top: 16px; font-size: .82rem; font-weight: 700; color: rgba(255,255,255,.35); }
 
-    /* ── Stats ── */
-    .stats {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
-      padding: 32px 20px;
-      background: rgba(255,255,255,.5); backdrop-filter: blur(8px);
-      border-top: 2px solid rgba(255,255,255,.8);
-      border-bottom: 2px solid rgba(255,255,255,.8);
+    /* ── Stats bar ── */
+    .stats-bar {
+      position: relative; z-index: 1;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+      background: rgba(255,255,255,.04);
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    .stat-item { text-align: center; min-width: 120px; }
+    .stat {
+      flex: 1; min-width: 130px;
+      padding: 28px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .stat:last-child { border-right: none; }
     .stat-num {
       font-family: var(--display);
-      font-size: 2.4rem; color: var(--orange);
-      text-shadow: 0 3px 0 rgba(255,140,0,.2);
+      font-size: 2.6rem; line-height: 1;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .stat-label { font-weight: 800; font-size: .82rem; color: var(--teal); }
+    .stat-lbl { font-weight: 800; font-size: .78rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
 
-    /* ── Card section ── */
-    .section-wrap {
-      max-width: 1000px; margin: 0 auto; padding: 60px 20px;
+    /* ── Generic section ── */
+    .section { position: relative; z-index: 1; padding: 80px 20px; }
+    .section-inner { max-width: 1020px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      font-weight: 800; font-size: .72rem;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--cyan); margin-bottom: 12px;
     }
-    .section-title {
+    .section-h2 {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      text-align: center; color: var(--navy);
-      text-shadow: 0 3px 0 rgba(255,255,255,.8);
-      margin-bottom: 8px;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15; margin-bottom: 12px;
     }
-    .section-sub {
-      text-align: center; font-weight: 700;
-      color: var(--teal); font-size: 1rem;
-      margin-bottom: 40px;
-    }
+    .section-sub { font-weight: 600; color: var(--muted); font-size: 1rem; margin-bottom: 48px; max-width: 560px; line-height: 1.6; }
 
-    /* ── Features ── */
-    .features-grid {
+    /* ── Features grid ── */
+    .feat-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
     }
-    .feature-card {
-      background: rgba(255,255,255,.82); backdrop-filter: blur(12px);
-      border: 2.5px solid rgba(255,255,255,.95);
-      border-radius: 22px; padding: 28px 20px;
-      text-align: center;
-      box-shadow: 0 8px 28px rgba(0,0,0,.09);
-      transition: transform .18s, box-shadow .18s;
+    .feat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 28px 22px;
+      transition: border-color .2s, transform .2s, background .2s;
     }
-    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.14); }
-    .feature-icon { font-size: 2.8rem; margin-bottom: 12px; }
-    .feature-title { font-family: var(--display); font-size: 1.1rem; color: var(--navy); margin-bottom: 6px; }
-    .feature-desc { font-weight: 600; font-size: .88rem; color: #557; line-height: 1.5; }
+    .feat-card:hover {
+      border-color: rgba(255,209,102,.4);
+      background: rgba(255,255,255,.09);
+      transform: translateY(-4px);
+    }
+    .feat-icon {
+      font-size: 2.4rem; margin-bottom: 14px;
+      display: inline-block;
+    }
+    .feat-title { font-family: var(--display); font-size: 1.05rem; margin-bottom: 8px; }
+    .feat-desc { font-weight: 600; font-size: .88rem; color: var(--muted); line-height: 1.6; }
+    .feat-pill {
+      display: inline-block; margin-top: 12px;
+      font-size: .73rem; font-weight: 800; padding: 4px 12px;
+      border-radius: 50px; background: rgba(255,209,102,.12);
+      color: var(--gold); border: 1px solid rgba(255,209,102,.25);
+      text-transform: uppercase; letter-spacing: .05em;
+    }
 
-    /* ── Demo ── */
-    .demo-wrap {
-      background: rgba(255,255,255,.85); backdrop-filter: blur(16px);
-      border: 2.5px solid rgba(255,255,255,.95);
-      border-radius: 28px; padding: 36px 28px;
-      box-shadow: 0 12px 48px rgba(0,0,0,.12);
-      max-width: 640px; margin: 0 auto;
+    /* ── Steps ── */
+    .steps-wrap {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border: 1px solid var(--card-border);
+      border-radius: 24px; overflow: hidden;
     }
-    .demo-progress {
-      display: flex; gap: 8px; justify-content: center; margin-bottom: 28px;
+    .step-item {
+      flex: 1; min-width: 200px;
+      padding: 36px 24px; text-align: center;
+      border-right: 1px solid var(--card-border);
+      background: var(--card-bg);
+      transition: background .2s;
     }
-    .demo-dot {
-      width: 12px; height: 12px; border-radius: 50%;
-      background: rgba(0,0,0,.15); transition: background .3s;
-    }
-    .demo-dot.active { background: var(--orange); }
-    .demo-dot.done   { background: #4ECA6F; }
-    .demo-q {
-      font-family: var(--display);
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      text-align: center; color: var(--navy);
-      margin-bottom: 8px; min-height: 2.5em;
+    .step-item:last-child { border-right: none; }
+    .step-item:hover { background: rgba(255,255,255,.09); }
+    .step-num-badge {
+      width: 42px; height: 42px;
+      border-radius: 50%; margin: 0 auto 14px;
       display: flex; align-items: center; justify-content: center;
+      font-family: var(--display); font-size: 1.2rem;
     }
-    .demo-hint {
-      text-align: center; font-weight: 700; font-size: .85rem;
-      color: #778; margin-bottom: 24px;
+    .sn1 { background: rgba(178,75,243,.2); border: 2px solid var(--purple); color: var(--purple); }
+    .sn2 { background: rgba(0,229,255,.12); border: 2px solid var(--cyan); color: var(--cyan); }
+    .sn3 { background: rgba(255,107,157,.12); border: 2px solid var(--pink); color: var(--pink); }
+    .sn4 { background: rgba(255,209,102,.12); border: 2px solid var(--gold); color: var(--gold); }
+    .step-icon-big { font-size: 2.6rem; margin-bottom: 10px; }
+    .step-title { font-family: var(--display); font-size: 1.05rem; margin-bottom: 6px; }
+    .step-desc { font-size: .85rem; font-weight: 600; color: var(--muted); line-height: 1.6; }
+
+    /* ── Demo section ── */
+    .demo-section {
+      background: linear-gradient(135deg, rgba(178,75,243,.08), rgba(0,229,255,.06));
+      border-top: 1px solid rgba(178,75,243,.2);
+      border-bottom: 1px solid rgba(0,229,255,.15);
+    }
+    .demo-box {
+      max-width: 620px; margin: 0 auto;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 28px; padding: 40px 32px;
+      backdrop-filter: blur(20px);
+    }
+    .demo-dots { display: flex; gap: 8px; justify-content: center; margin-bottom: 28px; }
+    .demo-dot {
+      width: 38px; height: 6px; border-radius: 3px;
+      background: rgba(255,255,255,.15); transition: background .3s;
+    }
+    .demo-dot.active { background: var(--gold); }
+    .demo-dot.done   { background: #4ECA6F; }
+    .demo-q-label {
+      text-align: center; font-size: .78rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--cyan); margin-bottom: 12px;
+    }
+    .demo-q-text {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      text-align: center; margin-bottom: 28px;
+      min-height: 2.5em;
+      display: flex; align-items: center; justify-content: center;
     }
     .demo-opts {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px; margin-bottom: 20px;
+      gap: 12px; margin-bottom: 16px;
     }
     .demo-opt {
-      font-family: var(--display); font-size: 1.3rem;
-      color: var(--navy); background: #F0F6FF;
-      border: 2.5px solid #C8D8F0; border-radius: 16px;
-      padding: 16px; cursor: pointer; transition: all .15s;
+      font-family: var(--display); font-size: 1.25rem;
+      color: var(--white);
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.15);
+      border-radius: 14px; padding: 15px;
+      cursor: pointer; transition: all .15s;
     }
-    .demo-opt:hover:not(:disabled) { background: #E0EEFF; border-color: var(--orange); transform: scale(1.02); }
+    .demo-opt:hover:not(:disabled) {
+      background: rgba(255,209,102,.15);
+      border-color: var(--gold);
+      transform: scale(1.03);
+    }
     .demo-opt:disabled { cursor: default; }
-    .demo-opt.correct  { background: #E8FFF0; border-color: #4ECA6F; color: #166534; }
-    .demo-opt.wrong    { background: #FFF0F0; border-color: #FF6B6B; color: #CC0000; animation: shake .35s ease; }
-    .demo-opt.reveal   { background: #E8FFF0; border-color: #4ECA6F; color: #166534; }
-    @keyframes shake {
-      0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)}
-    }
-    .demo-feedback {
-      text-align: center; font-family: var(--display);
-      font-size: 1.1rem; min-height: 2rem;
-      padding: 10px; border-radius: 12px;
+    .demo-opt.correct  { background: rgba(78,202,111,.2); border-color: #4ECA6F; color: #7EF5A0; }
+    .demo-opt.wrong    { background: rgba(255,107,107,.15); border-color: #FF6B6B; color: #FF9B9B; animation: shake .35s ease; }
+    .demo-opt.reveal   { background: rgba(78,202,111,.2); border-color: #4ECA6F; color: #7EF5A0; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+    .demo-fb {
+      text-align: center; min-height: 2rem;
+      font-family: var(--display); font-size: 1rem;
+      padding: 10px; border-radius: 10px;
       transition: all .3s;
     }
-    .demo-score {
-      text-align: center; padding: 28px 20px;
+    .demo-score { text-align: center; padding: 16px 0; }
+    .score-big {
+      font-family: var(--display); font-size: 4.5rem; line-height: 1;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 8px;
     }
-    .demo-score .score-num {
-      font-family: var(--display); font-size: 4rem; color: var(--orange);
-    }
-    .demo-score p { font-weight: 700; color: var(--teal); font-size: 1rem; margin: 8px 0 20px; }
+    .score-msg { font-weight: 700; color: var(--muted); font-size: 1rem; margin-bottom: 6px; }
+    .score-sub { font-size: .88rem; color: rgba(255,255,255,.35); margin-bottom: 24px; }
 
     /* ── Testimonials ── */
     .testi-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
+      gap: 16px;
     }
     .testi-card {
-      background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
-      border: 2px solid rgba(255,255,255,.95); border-radius: 22px;
-      padding: 24px 20px; box-shadow: 0 8px 28px rgba(0,0,0,.09);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px; padding: 26px 22px;
+      transition: border-color .2s, transform .2s;
     }
-    .testi-stars { font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 10px; }
-    .testi-text {
-      font-weight: 600; font-size: .95rem; color: #334;
-      line-height: 1.7; margin-bottom: 16px; font-style: italic;
+    .testi-card:hover { border-color: rgba(255,209,102,.35); transform: translateY(-4px); }
+    .testi-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 12px; }
+    .testi-quote {
+      font-weight: 600; font-size: .93rem;
+      color: rgba(255,255,255,.75); line-height: 1.7;
+      margin-bottom: 18px; font-style: italic;
     }
-    .testi-text::before { content: '"'; font-size: 2em; color: var(--orange); line-height: 0; vertical-align: -0.4em; margin-right: 2px; }
-    .testi-text::after  { content: '"'; font-size: 2em; color: var(--orange); line-height: 0; vertical-align: -0.4em; margin-left: 2px; }
+    .testi-quote::before { content: '"'; color: var(--gold); font-size: 1.6em; line-height: 0; vertical-align: -0.35em; }
+    .testi-quote::after  { content: '"'; color: var(--gold); font-size: 1.6em; line-height: 0; vertical-align: -0.35em; }
     .testi-author { display: flex; align-items: center; gap: 12px; }
-    .testi-avatar { font-size: 2.2rem; }
-    .testi-name { font-weight: 800; font-size: .9rem; color: var(--navy); }
-    .testi-role { font-weight: 600; font-size: .78rem; color: var(--teal); }
+    .testi-ava {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.12);
+    }
+    .testi-name { font-weight: 800; font-size: .88rem; }
+    .testi-role { font-size: .75rem; color: var(--muted); font-weight: 700; }
 
     /* ── CTA section ── */
     .cta-section {
-      background: linear-gradient(135deg, rgba(255,140,0,.15), rgba(255,94,0,.1));
-      border-top: 2px solid rgba(255,140,0,.2);
-      border-bottom: 2px solid rgba(255,140,0,.2);
+      position: relative; z-index: 1;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #0F0A2A 0%, #1A0535 50%, #0A1F35 100%);
+      border-top: 1px solid rgba(178,75,243,.2);
     }
-    .cta-box {
-      max-width: 680px; margin: 0 auto;
-      padding: 70px 20px; text-align: center;
+    .cta-inner {
+      max-width: 680px; margin: 0 auto; text-align: center;
     }
-    .cta-box h2 {
+    .cta-inner h2 {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      color: var(--navy);
-      text-shadow: 0 3px 0 rgba(255,255,255,.8);
-      margin-bottom: 16px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1; margin-bottom: 16px;
     }
-    .cta-box p {
-      font-weight: 700; color: var(--teal);
-      font-size: 1.05rem; line-height: 1.6; margin-bottom: 32px;
+    .cta-inner h2 span {
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .cta-price {
+    .cta-inner p { font-weight: 600; color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 36px; }
+
+    .price-card {
       display: inline-block;
-      background: linear-gradient(135deg, #FFF3D0, #FFE090);
-      border: 2px solid #FFB800; border-radius: 16px;
-      padding: 14px 28px; margin-bottom: 28px;
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,209,102,.3);
+      border-radius: 20px; padding: 20px 36px;
+      margin-bottom: 32px; text-align: center;
     }
-    .cta-price .price-label { font-size: .85rem; font-weight: 800; color: #8B6000; }
-    .cta-price .price-main {
-      font-family: var(--display); font-size: 2.6rem;
-      color: #1A2A4A; display: block; line-height: 1;
+    .price-label { font-size: .75rem; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; }
+    .price-main { font-family: var(--display); font-size: 3rem; color: var(--white); display: block; }
+    .price-sub { font-size: .82rem; color: var(--muted); font-weight: 700; margin-top: 2px; }
+
+    .btn-gold-lg {
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+      color: var(--bg); background: var(--gold);
+      border: none; border-radius: 16px;
+      padding: 20px 60px; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      box-shadow: 0 8px 40px rgba(255,209,102,.5);
+      transition: all .15s; letter-spacing: .01em;
+      animation: glow 3s ease-in-out infinite;
     }
-    .cta-price .price-sub { font-size: .82rem; font-weight: 700; color: #8B6000; }
+    .btn-gold-lg:hover { background: var(--gold2); transform: translateY(-3px); box-shadow: 0 14px 48px rgba(255,209,102,.6); }
+
     .btn-wa {
       display: inline-flex; align-items: center; gap: 10px;
       background: #25D366; color: #fff;
-      font-family: var(--display); font-size: 1.05rem;
-      border: none; border-radius: 16px; padding: 16px 32px;
-      cursor: pointer; text-decoration: none;
-      box-shadow: 0 6px 0 #1DA851;
-      transition: transform .1s, box-shadow .1s;
-      margin-top: 14px;
+      font-family: var(--display); font-size: 1rem;
+      border: none; border-radius: 14px;
+      padding: 14px 30px; cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,.35);
+      transition: all .15s; margin-top: 14px;
     }
-    .btn-wa:hover { filter: brightness(1.06); }
-    .btn-wa:active { transform: translateY(4px); box-shadow: 0 2px 0 #1DA851; }
-    .guarantee {
-      margin-top: 20px; font-size: .82rem;
-      font-weight: 700; color: rgba(0,60,80,.55);
-    }
+    .btn-wa:hover { background: #20BA5A; transform: translateY(-2px); }
 
-    /* ── How it works ── */
-    .steps { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-    .step {
-      flex: 1; min-width: 200px; max-width: 260px;
-      background: rgba(255,255,255,.8); border: 2.5px solid rgba(255,255,255,.9);
-      border-radius: 22px; padding: 28px 20px; text-align: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,.09);
+    .cta-note { margin-top: 22px; font-size: .8rem; font-weight: 700; color: rgba(255,255,255,.28); }
+    .cta-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 28px; }
+    .cta-chip {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50px; padding: 6px 16px;
+      font-size: .8rem; font-weight: 700;
+      color: rgba(255,255,255,.6);
     }
-    .step-num {
-      width: 44px; height: 44px;
-      background: linear-gradient(160deg, #FF8C00, #FF5E00);
-      color: #fff; font-family: var(--display); font-size: 1.3rem;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 14px; box-shadow: 0 5px 0 var(--orange-dark);
-    }
-    .step-icon { font-size: 2.4rem; margin-bottom: 10px; }
-    .step-title { font-family: var(--display); font-size: 1.05rem; color: var(--navy); margin-bottom: 6px; }
-    .step-desc { font-weight: 600; font-size: .85rem; color: #668; line-height: 1.5; }
 
     /* ── Footer ── */
     footer {
-      background: rgba(0,40,60,.85);
-      color: rgba(255,255,255,.7);
-      text-align: center; padding: 28px 20px;
-      font-weight: 700; font-size: .85rem;
       position: relative; z-index: 1;
+      background: rgba(0,0,0,.5);
+      border-top: 1px solid rgba(255,255,255,.07);
+      text-align: center; padding: 28px 20px;
+      font-size: .82rem; font-weight: 700;
+      color: rgba(255,255,255,.35);
     }
-    footer a { color: rgba(255,255,255,.9); text-decoration: none; }
+    footer a { color: rgba(255,255,255,.55); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.07);
+      margin: 0;
+    }
+
+    /* ── Reveal animation ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
-      .demo-opts { grid-template-columns: 1fr 1fr; }
-      .demo-opt  { font-size: 1.1rem; padding: 13px; }
-      nav { padding: 12px 16px; }
-      .nav-logo { font-size: 1.1rem; }
+      .steps-wrap { flex-direction: column; }
+      .step-item { border-right: none; border-bottom: 1px solid var(--card-border); }
+      .step-item:last-child { border-bottom: none; }
+      .stat { min-width: 100px; }
+      .demo-opt { font-size: 1.05rem; padding: 13px 8px; }
+      nav { padding: 14px 16px; }
     }
-
-    /* Scroll reveal */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- Clouds -->
-<div class="cloud c1"></div>
-<div class="cloud c2"></div>
-<div class="cloud c3"></div>
+<!-- Orbs -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
 
-<!-- Nav -->
+<!-- ═══ NAV ═══ -->
 <nav>
-  <a href="https://adiwiraminda.netlify.app" class="nav-logo">⭐ Adiwira Minda</a>
-  <a href="https://adiwiraminda.netlify.app" class="nav-cta">Masuk / Daftar →</a>
+  <a href="https://adiwiraminda.netlify.app" class="nav-logo">
+    <span>⭐</span> Adiwira Minda
+  </a>
+  <a href="https://adiwiraminda.netlify.app" class="nav-cta">Masuk →</a>
 </nav>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="badge">🇲🇾 Silibus KSSR Malaysia · Darjah 1 – 6</div>
-  <div class="hero-icon">🦸</div>
-  <h1>Anak Anda Akan<br /><span>Suka Matematik!</span></h1>
+  <div class="hero-badge">🇲🇾 Platform Matematik KSSR #1 Malaysia</div>
+  <div class="hero-emoji">🦸</div>
+  <h1>
+    <span class="line1">Anak Anda Akan</span>
+    <span class="line2">Suka Matematik!</span>
+  </h1>
   <p>
     Platform pembelajaran matematik paling seronok untuk kanak-kanak Malaysia.<br />
-    Interaktif, bergambar & disesuaikan mengikut umur anak anda.
+    <strong>Interaktif, bergambar & disesuaikan mengikut umur anak anda.</strong>
   </p>
-  <a href="https://adiwiraminda.netlify.app" class="btn-primary">🚀 Cuba Percuma Sekarang!</a>
-  <p class="hero-sub">✅ Tiada kontrak · ✅ Boleh guna terus · ✅ Untuk semua anak</p>
+  <a href="https://adiwiraminda.netlify.app" class="btn-gold">⚡ Langgan Sekarang</a>
+  <p class="hero-note">✦ Akses terus selepas bayaran · ✦ Untuk semua anak dalam keluarga</p>
 </section>
 
-<!-- ═══════════ STATS ═══════════ -->
-<div class="stats">
-  <div class="stat-item">
-    <div class="stat-num" data-count="600">0</div>
-    <div class="stat-label">Soalan Matematik</div>
+<!-- ═══ STATS ═══ -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num" data-count="600">0+</div>
+    <div class="stat-lbl">Soalan Matematik</div>
   </div>
-  <div class="stat-item">
+  <div class="stat">
     <div class="stat-num">6</div>
-    <div class="stat-label">Topik KSSR</div>
+    <div class="stat-lbl">Topik KSSR</div>
   </div>
-  <div class="stat-item">
+  <div class="stat">
     <div class="stat-num">3</div>
-    <div class="stat-label">Peringkat Umur</div>
+    <div class="stat-lbl">Peringkat Umur</div>
   </div>
-  <div class="stat-item">
+  <div class="stat">
     <div class="stat-num">10</div>
-    <div class="stat-label">Level Setiap Topik</div>
+    <div class="stat-lbl">Level / Topik</div>
   </div>
 </div>
 
-<!-- ═══════════ FEATURES ═══════════ -->
-<section class="section-wrap reveal">
-  <h2 class="section-title">Kenapa Pilih Adiwira Minda? 🌟</h2>
-  <p class="section-sub">Direka khas untuk membantu anak anda berjaya dalam matematik</p>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <div class="feature-title">Ikut Silibus KSSR</div>
-      <div class="feature-desc">6 topik utama — Tambah, Tolak, Darab, Bahagi, Pecahan & Bentuk. Sama persis dengan apa yang diajar di sekolah.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">👧</div>
-      <div class="feature-title">Disesuaikan Mengikut Umur</div>
-      <div class="feature-desc">Soalan berbeza untuk umur 5–7, 8–10 & 11–12 tahun. Anak anda tidak rasa terlalu mudah atau terlalu susah.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🏆</div>
-      <div class="feature-title">Sistem Ganjaran Bintang</div>
-      <div class="feature-desc">Kumpul bintang setiap jawab soalan betul. Anak anda akan teruja nak terus belajar untuk dapat lebih banyak bintang!</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⏱️</div>
-      <div class="feature-title">Timer Gamified</div>
-      <div class="feature-desc">Jam randik 60 saat untuk setiap soalan. Latih fokus dan kelajuan berfikir — kemahiran penting untuk peperiksaan!</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">👨‍👩‍👧‍👦</div>
-      <div class="feature-title">Profil Setiap Anak</div>
-      <div class="feature-desc">Satu akaun boleh ada banyak profil anak. Data bintang dan progres tersimpan berasingan untuk setiap anak.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📱</div>
-      <div class="feature-title">Akses Mana-Mana</div>
-      <div class="feature-desc">Boleh guna di komputer, tablet atau telefon. Belajar di rumah, dalam kereta, atau di mana sahaja!</div>
+<hr class="divider" />
+
+<!-- ═══ FEATURES ═══ -->
+<section class="section reveal">
+  <div class="section-inner">
+    <div class="section-tag">✦ Kenapa Adiwira Minda?</div>
+    <h2 class="section-h2">Semua Dalam Satu Platform 🎯</h2>
+    <p class="section-sub">Direka khas untuk memastikan anak anda berjaya dalam matematik — dari Darjah 1 hingga 6.</p>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">📚</div>
+        <div class="feat-title">Ikut Silibus KSSR</div>
+        <div class="feat-desc">6 topik utama — Tambah, Tolak, Darab, Bahagi, Pecahan & Bentuk. Sama persis dengan apa yang diajar di sekolah.</div>
+        <span class="feat-pill">Darjah 1–6</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🎯</div>
+        <div class="feat-title">Disesuaikan Ikut Umur</div>
+        <div class="feat-desc">Soalan berbeza untuk umur 5–7, 8–10 & 11–12 tahun. Anak anda tidak rasa terlalu mudah atau terlalu susah.</div>
+        <span class="feat-pill">3 Peringkat</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🏆</div>
+        <div class="feat-title">Sistem Bintang Ganjaran</div>
+        <div class="feat-desc">Kumpul bintang setiap jawab soalan betul. Anak anda akan teruja nak terus belajar untuk dapat lebih banyak bintang!</div>
+        <span class="feat-pill">Gamified</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⏱️</div>
+        <div class="feat-title">Timer Gamified</div>
+        <div class="feat-desc">Jam randik 60 saat untuk setiap soalan. Latih fokus dan kelajuan berfikir — kemahiran penting untuk peperiksaan!</div>
+        <span class="feat-pill">60 Saat</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">👨‍👩‍👧‍👦</div>
+        <div class="feat-title">Profil Setiap Anak</div>
+        <div class="feat-desc">Satu akaun boleh ada banyak profil anak. Data bintang dan progres tersimpan berasingan untuk setiap anak.</div>
+        <span class="feat-pill">Multi-Anak</span>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📱</div>
+        <div class="feat-title">Akses Mana-Mana</div>
+        <div class="feat-desc">Boleh guna di komputer, tablet atau telefon. Belajar di rumah, dalam kereta, atau di mana sahaja!</div>
+        <span class="feat-pill">Semua Peranti</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ HOW IT WORKS ═══════════ -->
-<section style="background: rgba(255,255,255,.35); position:relative; z-index:1;">
-  <div class="section-wrap reveal">
-    <h2 class="section-title">Cara Mudah Bermula 🚀</h2>
-    <p class="section-sub">Siap dalam masa 2 minit sahaja</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-icon">💳</div>
+<hr class="divider" />
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="section reveal">
+  <div class="section-inner">
+    <div class="section-tag">✦ Cara Bermula</div>
+    <h2 class="section-h2">Siap Dalam 2 Minit 🚀</h2>
+    <p class="section-sub">Proses yang mudah — langgan, dapat kod, terus guna.</p>
+    <div class="steps-wrap">
+      <div class="step-item">
+        <div class="step-num-badge sn1">1</div>
+        <div class="step-icon-big">💳</div>
         <div class="step-title">Buat Bayaran</div>
-        <div class="step-desc">Hantar resit pembayaran ke WhatsApp kami. Kami akan jana kod akses untuk anda.</div>
+        <div class="step-desc">Hantar resit ke WhatsApp kami. Kami jana kod akses untuk anda dalam masa singkat.</div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-icon">🔑</div>
+      <div class="step-item">
+        <div class="step-num-badge sn2">2</div>
+        <div class="step-icon-big">🔑</div>
         <div class="step-title">Dapat Kod Akses</div>
-        <div class="step-desc">Masukkan nombor WhatsApp & kod akses di skrin login. Terus boleh guna!</div>
+        <div class="step-desc">Masukkan nombor WhatsApp & kod di skrin login. Terus boleh akses semua kandungan!</div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-icon">🦸</div>
+      <div class="step-item">
+        <div class="step-num-badge sn3">3</div>
+        <div class="step-icon-big">🦸</div>
         <div class="step-title">Buat Profil Anak</div>
-        <div class="step-desc">Pilih nama, ikon avatar & umur anak. Sistem akan susun soalan mengikut tahap mereka.</div>
+        <div class="step-desc">Pilih nama, ikon & umur anak. Sistem akan susun soalan mengikut tahap mereka secara automatik.</div>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-icon">⭐</div>
+      <div class="step-item">
+        <div class="step-num-badge sn4">4</div>
+        <div class="step-icon-big">⭐</div>
         <div class="step-title">Mula Belajar!</div>
-        <div class="step-desc">Anak anda pilih topik & level, jawab soalan dan kumpul bintang. Seronok dijamin!</div>
+        <div class="step-desc">Pilih topik, jawab soalan, kumpul bintang. Seronok dijamin — anak anda minta buat lagi!</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ MINI DEMO ═══════════ -->
-<section class="section-wrap reveal">
-  <h2 class="section-title">Cuba 3 Soalan Percuma! 🎮</h2>
-  <p class="section-sub">Rasa sendiri betapa seronoknya Adiwira Minda</p>
-
-  <div class="demo-wrap">
-    <div class="demo-progress">
-      <div class="demo-dot active" id="dot0"></div>
-      <div class="demo-dot" id="dot1"></div>
-      <div class="demo-dot" id="dot2"></div>
+<!-- ═══ DEMO ═══ -->
+<section class="section demo-section reveal">
+  <div class="section-inner">
+    <div style="text-align:center">
+      <div class="section-tag">✦ Cuba Sendiri</div>
+      <h2 class="section-h2">Rasa Sendiri Keseronokannya 🎮</h2>
+      <p class="section-sub" style="margin:0 auto 40px;">3 soalan contoh — sama seperti pengalaman sebenar dalam app</p>
     </div>
-
-    <div id="demo-question" class="demo-q">45 + 28 = ?</div>
-    <div id="demo-label" class="demo-hint">🏅 Darjah 3 · Tambah</div>
-
-    <div class="demo-opts" id="demo-opts">
-      <button class="demo-opt" onclick="checkAnswer(this, false)">70</button>
-      <button class="demo-opt" onclick="checkAnswer(this, true)">73</button>
-      <button class="demo-opt" onclick="checkAnswer(this, false)">75</button>
-      <button class="demo-opt" onclick="checkAnswer(this, false)">68</button>
+    <div class="demo-box">
+      <div class="demo-dots">
+        <div class="demo-dot active" id="dot0"></div>
+        <div class="demo-dot" id="dot1"></div>
+        <div class="demo-dot" id="dot2"></div>
+      </div>
+      <div class="demo-q-label" id="demo-label">🏅 Darjah 3 · Tambah</div>
+      <div class="demo-q-text" id="demo-question">45 + 28 = ?</div>
+      <div class="demo-opts" id="demo-opts">
+        <button class="demo-opt" onclick="checkAnswer(this, false)">70</button>
+        <button class="demo-opt" onclick="checkAnswer(this, true)">73</button>
+        <button class="demo-opt" onclick="checkAnswer(this, false)">75</button>
+        <button class="demo-opt" onclick="checkAnswer(this, false)">68</button>
+      </div>
+      <div class="demo-fb" id="demo-fb"></div>
     </div>
-
-    <div class="demo-feedback" id="demo-feedback"></div>
   </div>
 </section>
 
-<!-- ═══════════ TESTIMONIALS ═══════════ -->
-<section style="background: rgba(255,255,255,.35); position:relative; z-index:1;">
-  <div class="section-wrap reveal">
-    <h2 class="section-title">Apa Kata Ibu Bapa? 💬</h2>
-    <p class="section-sub">Ribuan keluarga Malaysia sudah merasai manfaatnya</p>
-    <div class="testi-grid">
+<hr class="divider" />
 
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section reveal">
+  <div class="section-inner">
+    <div class="section-tag">✦ Apa Kata Ibu Bapa</div>
+    <h2 class="section-h2">Mereka Sudah Merasainya 💬</h2>
+    <p class="section-sub">Keluarga Malaysia yang sudah guna Adiwira Minda berkongsi pengalaman mereka.</p>
+    <div class="testi-grid">
       <div class="testi-card">
-        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
-        <p class="testi-text">Anak saya yang dulunya benci matematik, sekarang minta belajar sendiri setiap malam! Markah dia naik dari 58 ke 92 dalam masa 2 bulan.</p>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Anak saya yang dulunya benci matematik, sekarang minta belajar sendiri setiap malam! Markah dia naik dari 58 ke 92 dalam masa 2 bulan.</p>
         <div class="testi-author">
-          <div class="testi-avatar">👩</div>
+          <div class="testi-ava">👩</div>
           <div>
             <div class="testi-name">Puan Aisyah Mohd Nor</div>
-            <div class="testi-role">Ibu kepada Darjah 3, Shah Alam</div>
+            <div class="testi-role">Ibu kepada pelajar Darjah 3, Shah Alam</div>
           </div>
         </div>
       </div>
-
       <div class="testi-card">
-        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
-        <p class="testi-text">Saya ada 3 orang anak sekolah rendah. Sekarang boleh guna satu akaun untuk semua anak. Berbaloi sangat dengan harganya!</p>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Saya ada 3 orang anak sekolah rendah. Boleh guna satu akaun untuk semua anak dengan profil berasingan. Sangat berbaloi!</p>
         <div class="testi-author">
-          <div class="testi-avatar">👨</div>
+          <div class="testi-ava">👨</div>
           <div>
             <div class="testi-name">Encik Faizal Hashim</div>
             <div class="testi-role">Bapa kepada 3 anak, Johor Bahru</div>
           </div>
         </div>
       </div>
-
       <div class="testi-card">
-        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
-        <p class="testi-text">Sebagai guru matematik, saya recommend platform ini kepada semua ibu bapa. Soalannya sesuai dengan silibus KSSR dan cara penyampaiannya sangat kreatif.</p>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Sebagai guru matematik, saya recommend platform ini. Soalannya sesuai dengan silibus KSSR dan cara penyampaiannya sangat kreatif!</p>
         <div class="testi-author">
-          <div class="testi-avatar">👩‍🏫</div>
+          <div class="testi-ava">👩‍🏫</div>
           <div>
             <div class="testi-name">Cikgu Azlina Razali</div>
             <div class="testi-role">Guru Matematik SK, Penang</div>
           </div>
         </div>
       </div>
-
       <div class="testi-card">
-        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
-        <p class="testi-text">Anak saya dapat A dalam matematik UPSR lepas guna Adiwira Minda selama 6 bulan. Terima kasih banyak-banyak!</p>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Anak saya dapat A dalam matematik UPSR lepas guna Adiwira Minda selama 6 bulan. Alhamdulillah, terima kasih banyak-banyak!</p>
         <div class="testi-author">
-          <div class="testi-avatar">👩</div>
+          <div class="testi-ava">👩</div>
           <div>
             <div class="testi-name">Puan Nurul Huda</div>
             <div class="testi-role">Ibu kepada pelajar UPSR, Kuala Lumpur</div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
+<!-- ═══ CTA ═══ -->
 <section class="cta-section">
-  <div class="cta-box reveal">
-    <div style="font-size:3.5rem; animation: heroFloat 4s ease-in-out infinite; margin-bottom:16px;">🎯</div>
-    <h2>Mulakan Perjalanan Matematik Anak Anda Hari Ini!</h2>
+  <div class="cta-inner reveal">
+    <div style="font-size:3.5rem;animation:float 4s ease-in-out infinite;margin-bottom:20px;">🎯</div>
+    <h2>Mulakan Perjalanan Matematik<br/><span>Anak Anda Hari Ini!</span></h2>
     <p>
-      Jangan biar anak anda ketinggalan. Setiap hari berlengah adalah peluang belajar yang terlepas.<br />
-      <strong>Langgan sekarang dan lihat perbezaannya dalam masa 30 hari!</strong>
+      Jangan biar anak anda ketinggalan. Setiap hari tanpa latihan adalah peluang yang terlepas.<br />
+      <strong style="color:rgba(255,255,255,.8)">Langgan sekarang dan lihat perbezaannya dalam masa 30 hari!</strong>
     </p>
 
-    <div class="cta-price">
-      <div class="price-label">HARGA LANGGANAN</div>
+    <div class="price-card">
+      <div class="price-label">Harga Langganan</div>
       <span class="price-main">RM 29.90</span>
       <div class="price-sub">/ bulan · Untuk semua anak dalam keluarga</div>
     </div>
 
     <div>
-      <a href="https://adiwiraminda.netlify.app" class="btn-primary" style="display:inline-block; margin-bottom:8px;">
-        🚀 Langgan Sekarang!
+      <a href="https://adiwiraminda.netlify.app" class="btn-gold-lg">⚡ Langgan Sekarang</a>
+    </div>
+
+    <div>
+      <a href="https://wa.me/60198555878?text=Saya%20berminat%20untuk%20langgan%20Adiwira%20Minda!%20Boleh%20tolong%20hantarkan%20maklumat%20pembayaran%3F" class="btn-wa" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hubungi via WhatsApp
       </a>
     </div>
 
-    <a href="https://wa.me/60198555878?text=Saya%20berminat%20untuk%20langgan%20Adiwira%20Minda!%20Boleh%20tolong%20hantarkan%20maklumat%20pembayaran%3F" class="btn-wa" target="_blank">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Hubungi via WhatsApp
-    </a>
-
-    <p class="guarantee">🔒 Kod akses terus dihantar selepas pembayaran disahkan · 📞 Sokongan via WhatsApp</p>
+    <div class="cta-chips">
+      <span class="cta-chip">🔒 Kod akses terus dihantar</span>
+      <span class="cta-chip">📞 Sokongan via WhatsApp</span>
+      <span class="cta-chip">👨‍👩‍👧 Semua anak dalam 1 akaun</span>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
+<!-- ═══ FOOTER ═══ -->
 <footer>
-  <p>© 2025 <strong>Adiwira Minda</strong> · Platform Matematik KSSR Malaysia</p>
-  <p style="margin-top:6px;"><a href="https://adiwiraminda.netlify.app">adiwiraminda.netlify.app</a></p>
+  <p>© 2025 <strong style="color:rgba(255,255,255,.6)">Adiwira Minda</strong> · Platform Matematik KSSR Malaysia</p>
+  <p style="margin-top:6px">
+    <a href="https://adiwiraminda.netlify.app">adiwiraminda.netlify.app</a>
+    &nbsp;·&nbsp;
+    <a href="https://wa.me/60198555878">WhatsApp: 019-855 5878</a>
+  </p>
 </footer>
 
 <script>
-// ── Mini Demo ────────────────────────────────────────────────────────────────
-const QUESTIONS = [
-  {
-    q: '45 + 28 = ?',
-    hint: '🏅 Darjah 3 · Tambah',
-    opts: [
-      { text: '70',  correct: false },
-      { text: '73',  correct: true  },
-      { text: '75',  correct: false },
-      { text: '68',  correct: false },
-    ]
-  },
-  {
-    q: '7 × 8 = ?',
-    hint: '🏅 Darjah 4 · Darab',
-    opts: [
-      { text: '54',  correct: false },
-      { text: '63',  correct: false },
-      { text: '56',  correct: true  },
-      { text: '48',  correct: false },
-    ]
-  },
-  {
-    q: '100 − 37 = ?',
-    hint: '🏅 Darjah 3 · Tolak',
-    opts: [
-      { text: '73',  correct: false },
-      { text: '63',  correct: true  },
-      { text: '67',  correct: false },
-      { text: '53',  correct: false },
-    ]
-  }
+// ── Demo ─────────────────────────────────────────────────────────────────────
+const QS = [
+  { q:'45 + 28 = ?', lbl:'🏅 Darjah 3 · Tambah',
+    opts:[{t:'70',c:false},{t:'73',c:true},{t:'75',c:false},{t:'68',c:false}] },
+  { q:'7 × 8 = ?',   lbl:'🏅 Darjah 4 · Darab',
+    opts:[{t:'54',c:false},{t:'63',c:false},{t:'56',c:true},{t:'48',c:false}] },
+  { q:'100 − 37 = ?',lbl:'🏅 Darjah 3 · Tolak',
+    opts:[{t:'73',c:false},{t:'63',c:true},{t:'67',c:false},{t:'53',c:false}] },
 ]
+let cur = 0, score = 0
 
-let current = 0
-let score   = 0
-
-function checkAnswer(btn, isCorrect) {
-  // Disable all buttons
-  const opts = document.querySelectorAll('.demo-opt')
-  opts.forEach(b => b.disabled = true)
-
-  // Style feedback
-  if (isCorrect) {
+function checkAnswer(btn, ok) {
+  document.querySelectorAll('.demo-opt').forEach(b => b.disabled = true)
+  if (ok) {
     btn.classList.add('correct')
-    showFeedback('✅ Betul! Tahniah! +10 ⭐', '#E8FFF0', '#166534')
+    feedback('✅ Betul! Tahniah! +10 ⭐', 'rgba(78,202,111,.15)', '#7EF5A0')
     score++
   } else {
     btn.classList.add('wrong')
-    // Reveal correct
-    opts.forEach(b => {
-      if (b.getAttribute('onclick').includes('true')) b.classList.add('reveal')
+    document.querySelectorAll('.demo-opt').forEach(b => {
+      if (b.onclick.toString().includes('true')) b.classList.add('reveal')
     })
-    showFeedback('❌ Salah. Cuba lagi pada soalan seterusnya!', '#FFF0F0', '#CC0000')
+    feedback('❌ Salah — soalan seterusnya!', 'rgba(255,107,107,.12)', '#FF9B9B')
   }
-
-  // Update dot
-  document.getElementById('dot' + current).classList.remove('active')
-  document.getElementById('dot' + current).classList.add('done')
-
-  // Next after delay
-  setTimeout(() => {
-    current++
-    if (current < QUESTIONS.length) {
-      loadQuestion(current)
-    } else {
-      showScore()
-    }
-  }, 1400)
+  document.getElementById('dot'+cur).classList.replace('active','done')
+  setTimeout(() => { cur < 2 ? loadQ(++cur) : showScore() }, 1400)
 }
 
-function loadQuestion(i) {
-  const q = QUESTIONS[i]
+function feedback(msg, bg, color) {
+  const el = document.getElementById('demo-fb')
+  el.textContent = msg; el.style.background = bg; el.style.color = color
+}
+
+function loadQ(i) {
+  const q = QS[i]
   document.getElementById('demo-question').textContent = q.q
-  document.getElementById('demo-label').textContent = q.hint
-  document.getElementById('demo-feedback').textContent = ''
-  document.getElementById('demo-feedback').style.background = ''
-
-  const optsEl = document.getElementById('demo-opts')
-  optsEl.innerHTML = ''
-  q.opts.forEach(opt => {
-    const btn = document.createElement('button')
-    btn.className = 'demo-opt'
-    btn.textContent = opt.text
-    btn.onclick = () => checkAnswer(btn, opt.correct)
-    optsEl.appendChild(btn)
+  document.getElementById('demo-label').textContent = q.lbl
+  const fb = document.getElementById('demo-fb')
+  fb.textContent = ''; fb.style.background = ''
+  const box = document.getElementById('demo-opts')
+  box.innerHTML = ''
+  q.opts.forEach(o => {
+    const b = document.createElement('button')
+    b.className = 'demo-opt'; b.textContent = o.t
+    b.onclick = () => checkAnswer(b, o.c); box.appendChild(b)
   })
-
-  // Update dot
-  const dot = document.getElementById('dot' + i)
+  const dot = document.getElementById('dot'+i)
   if (dot) dot.classList.add('active')
 }
 
-function showFeedback(msg, bg, color) {
-  const fb = document.getElementById('demo-feedback')
-  fb.textContent = msg
-  fb.style.background = bg
-  fb.style.color = color
-  fb.style.fontFamily = "'Lilita One', cursive"
-}
-
 function showScore() {
-  const emoji = score === 3 ? '🎉' : score === 2 ? '😊' : '💪'
-  const msg   = score === 3 ? 'Sempurna! Anak anda berbakat!' :
-                score === 2 ? 'Bagus! Terus berlatih!' :
-                              'Jangan putus asa! Teruskan belajar!'
-
-  const container = document.querySelector('.demo-wrap')
-  container.innerHTML = `
+  const e = score===3?'🎉':score===2?'😊':'💪'
+  const m = score===3?'Sempurna! Anak anda berbakat!':score===2?'Bagus! Terus berlatih!':'Jangan putus asa! Teruskan belajar!'
+  document.querySelector('.demo-box').innerHTML = `
     <div class="demo-score">
-      <div style="font-size:4rem;margin-bottom:8px;">${emoji}</div>
-      <div class="score-num">${score}/3</div>
-      <p>${msg}</p>
-      <p style="color:#557;font-size:.9rem;margin-bottom:24px;">
-        Dalam Adiwira Minda, ada <strong>600+ soalan</strong> merentasi semua tahap untuk anak anda!
-      </p>
-      <a href="https://adiwiraminda.netlify.app" class="btn-primary" style="font-size:1.1rem;padding:16px 40px;">
-        🚀 Cuba Sepenuhnya Percuma!
-      </a>
-    </div>
-  `
+      <div style="font-size:3.5rem;margin-bottom:10px;animation:float 4s ease-in-out infinite">${e}</div>
+      <div class="score-big">${score}/3</div>
+      <p class="score-msg">${m}</p>
+      <p class="score-sub">Ada <strong style="color:rgba(255,255,255,.6)">600+ soalan</strong> lagi menunggu dalam Adiwira Minda!</p>
+      <a href="https://adiwiraminda.netlify.app" class="btn-gold" style="font-size:1.05rem;padding:15px 38px;">⚡ Langgan Sekarang</a>
+    </div>`
 }
 
 // ── Scroll reveal ─────────────────────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible')
-      observer.unobserve(e.target)
-    }
-  })
-}, { threshold: 0.12 })
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target) } })
+}, { threshold: 0.1 })
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
-
-// ── Count-up animation ────────────────────────────────────────────────────────
-const countEls = document.querySelectorAll('[data-count]')
-const countObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const el  = e.target
-      const end = parseInt(el.dataset.count)
-      let cur   = 0
-      const step = Math.ceil(end / 50)
-      const timer = setInterval(() => {
-        cur = Math.min(cur + step, end)
-        el.textContent = cur + '+'
-        if (cur >= end) clearInterval(timer)
-      }, 30)
-      countObs.unobserve(el)
-    }
+// ── Count-up ──────────────────────────────────────────────────────────────────
+const cObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (!e.isIntersecting) return
+    const el = e.target, end = parseInt(el.dataset.count)
+    let n = 0; const step = Math.ceil(end/50)
+    const t = setInterval(() => { n = Math.min(n+step,end); el.textContent=n+'+'; if(n>=end) clearInterval(t) }, 28)
+    cObs.unobserve(el)
   })
 }, { threshold: 0.5 })
-
-countEls.forEach(el => countObs.observe(el))
+document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el))
 </script>
 </body>
 </html>
