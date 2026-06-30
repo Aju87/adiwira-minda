@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react'
 import {
-  getQuestions, BUNDLES, AGE_GROUPS,
-  TOTAL_LEVELS, STARS_PER_CORRECT, BONUS_STARS_PERFECT
+  getQuestions, BUNDLES, AGE_GROUPS, TOTAL_LEVELS
 } from './data/questions'
 import {
   loadChildren, saveChildren,
@@ -324,7 +323,7 @@ export default function App() {
             onPlayAgain={() => pickLevel(selectedLevel)}
             onNextLevel={() => {
               const next = selectedLevel < TOTAL_LEVELS ? selectedLevel + 1 : null
-              if (next) pickLevel(next) else goLevel()
+              next ? pickLevel(next) : goLevel()
             }}
             onBack={goLevel}
             hasNextLevel={selectedLevel < TOTAL_LEVELS}
