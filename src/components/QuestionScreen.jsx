@@ -26,46 +26,97 @@ const WRONG_MSGS = [
 
 function pick(arr, seed) { return arr[seed % arr.length] }
 
-// ── SVG circle countdown timer ───────────────────────────────────────────────
+// ── SVG Jam Randik (Stopwatch) Timer ────────────────────────────────────────
 function TimerCircle({ seconds }) {
-  const R    = 24
-  const circ = 2 * Math.PI * R
-  const fill = (seconds / TIMER_TOTAL) * circ
-  const color = seconds > 20 ? '#4ECA6F' : seconds > 10 ? '#FF9F43' : '#FF4757'
-  const pulse = seconds <= 10
+  const R     = 23
+  const circ  = 2 * Math.PI * R
+  const fill  = (seconds / TIMER_TOTAL) * circ
+  const urgent = seconds <= 10
+  const rim    = urgent ? '#8B0000' : '#CC0000'
+  const stroke = urgent ? '#FF0000' : '#FF3333'
+  const face   = urgent ? '#FFD0D0' : '#FFF0F0'
+
+  // 12 tick marks around face
+  const ticks = Array.from({ length: 12 }, (_, i) => {
+    const a  = ((i * 30) - 90) * Math.PI / 180
+    const r1 = 20, r2 = 16
+    return {
+      x1: 34 + r1 * Math.cos(a), y1: 50 + r1 * Math.sin(a),
+      x2: 34 + r2 * Math.cos(a), y2: 50 + r2 * Math.sin(a),
+      major: i % 3 === 0,
+    }
+  })
 
   return (
     <div style={{
-      position: 'relative',
-      width: 64, height: 64,
       flexShrink: 0,
-      animation: pulse ? 'pulseBounce .8s ease-in-out infinite' : 'none',
+      animation: urgent ? 'pulseBounce .55s ease-in-out infinite' : 'none',
+      filter: urgent ? 'drop-shadow(0 0 8px rgba(255,0,0,.55))' : 'drop-shadow(0 3px 6px rgba(180,0,0,.25))',
     }}>
-      <svg width="64" height="64" viewBox="0 0 64 64" aria-label={`${seconds} saat berbaki`}>
-        {/* Track */}
-        <circle cx="32" cy="32" r={R} fill="rgba(255,255,255,.55)" stroke="rgba(0,0,0,.08)" strokeWidth="5" />
-        {/* Progress arc */}
+      <svg width="68" height="82" viewBox="0 0 68 82" aria-label={`${seconds} saat berbaki`}>
+
+        {/* ── Crown button (top centre) ── */}
+        <rect x="27" y="1" width="14" height="8" rx="4" fill={rim} />
+        {/* Crown stem */}
+        <rect x="32" y="8" width="4" height="5" fill={rim} />
+
+        {/* ── Side push-buttons ── */}
+        <rect x="4"  y="22" width="9" height="6" rx="3" fill={rim} />
+        <rect x="55" y="22" width="9" height="6" rx="3" fill={rim} />
+
+        {/* ── Outer rim ── */}
+        <circle cx="34" cy="50" r="30" fill={rim} />
+
+        {/* ── Watch face ── */}
+        <circle cx="34" cy="50" r="26" fill={face} />
+
+        {/* ── Tick marks ── */}
+        {ticks.map((t, i) => (
+          <line
+            key={i}
+            x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
+            stroke={t.major ? rim : '#FFAAAA'}
+            strokeWidth={t.major ? 2.5 : 1.5}
+            strokeLinecap="round"
+          />
+        ))}
+
+        {/* ── Progress track (inner arc) ── */}
+        <circle cx="34" cy="50" r={R}
+          fill="none" stroke="#FFCCCC" strokeWidth="4.5" />
+
+        {/* ── Countdown arc ── */}
         <circle
-          cx="32" cy="32" r={R}
+          cx="34" cy="50" r={R}
           fill="none"
-          stroke={color}
-          strokeWidth="5"
+          stroke={stroke}
+          strokeWidth="4.5"
           strokeDasharray={circ}
           strokeDashoffset={circ - fill}
           strokeLinecap="round"
-          transform="rotate(-90 32 32)"
-          style={{ transition: 'stroke-dashoffset .9s linear, stroke .4s' }}
+          transform="rotate(-90 34 50)"
+          style={{ transition: 'stroke-dashoffset .9s linear' }}
         />
-        {/* Number */}
+
+        {/* ── Centre dot ── */}
+        <circle cx="34" cy="50" r="3" fill={rim} />
+
+        {/* ── Seconds number ── */}
         <text
-          x="32" y="37"
+          x="34" y={seconds >= 10 ? '47' : '47'}
           textAnchor="middle"
           fontFamily="Lilita One, cursive"
-          fontSize={seconds >= 10 ? '16' : '18'}
-          fill={color}
-          fontWeight="bold"
+          fontSize={seconds >= 10 ? '15' : '17'}
+          fill={rim}
+          dominantBaseline="middle"
         >
           {seconds}
+        </text>
+
+        {/* ── "s" label ── */}
+        <text x="34" y="60" textAnchor="middle"
+          fontFamily="Baloo 2, cursive" fontSize="9" fill={rim} fontWeight="700">
+          saat
         </text>
       </svg>
     </div>
