@@ -8,6 +8,12 @@
   to   = "/landing.html"
   status = 200
 
+# Demo page
+[[redirects]]
+  from = "/demo"
+  to   = "/demo.html"
+  status = 200
+
 # Admin route → React app handle
 [[redirects]]
   from = "/admin"
