@@ -18,7 +18,7 @@
       --sky2:   #87CEEB;
       --white:  #FFFFFF;
     }
-    html, body { height: 100%; }
+    html, body { height: 100%; overflow-x: hidden; }
     body {
       font-family: var(--font-b);
       background: linear-gradient(175deg, var(--sky1) 0%, var(--sky2) 100%);
@@ -54,7 +54,7 @@
     .nav-cta:hover { background: #E05000; transform: translateY(-1px); }
 
     /* ── App wrapper ── */
-    #app { position: relative; z-index: 1; min-height: calc(100vh - 58px); padding: 20px 16px 40px; display: flex; flex-direction: column; align-items: center; }
+    #app { position: relative; z-index: 1; min-height: calc(100vh - 58px); padding: 20px 16px 40px; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 100vw; }
 
     /* ── Card base ── */
     .card {
@@ -94,23 +94,28 @@
     .float { animation: heroFloat 4s ease-in-out infinite; display: inline-block; }
 
     /* ── Age group cards ── */
-    .group-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; width: 100%; max-width: 580px; }
+    .group-grid { display: grid; grid-template-columns: 1fr; gap: 12px; width: 100%; max-width: 400px; }
+    @media (min-width: 520px) { .group-grid { grid-template-columns: repeat(3, 1fr); max-width: 580px; } }
     .group-card {
-      padding: 28px 16px; text-align: center; cursor: pointer;
+      padding: 22px 16px; text-align: center; cursor: pointer;
       border-radius: 22px; border: 3px solid rgba(255,255,255,.9);
       box-shadow: 0 8px 0 var(--shadow), 0 12px 28px rgba(0,0,0,.12);
       transition: transform .12s, box-shadow .12s;
       position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
     }
-    .group-card:hover { transform: translateY(-6px); box-shadow: 0 14px 0 var(--shadow), 0 20px 36px rgba(0,0,0,.15); }
+    @media (min-width: 520px) { .group-card { flex-direction: column; gap: 0; padding: 28px 16px; } }
+    .group-card:hover { transform: translateY(-4px); box-shadow: 0 12px 0 var(--shadow), 0 18px 32px rgba(0,0,0,.15); }
     .group-card:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--shadow); }
-    .group-card .g-emoji { font-size: 3.5rem; margin-bottom: 8px; display: block; }
-    .group-card .g-label { font-family: var(--font-d); font-size: 1.1rem; color: #1A2A4A; margin-bottom: 4px; }
+    .group-card .g-emoji { font-size: 2.8rem; display: block; flex-shrink: 0; }
+    @media (min-width: 520px) { .group-card .g-emoji { font-size: 3.5rem; margin-bottom: 8px; } }
+    .group-card .g-label { font-family: var(--font-d); font-size: 1.15rem; color: #1A2A4A; margin-bottom: 2px; text-align: left; }
+    @media (min-width: 520px) { .group-card .g-label { text-align: center; margin-bottom: 4px; } }
     .group-card .g-range { font-weight: 700; font-size: .8rem; color: rgba(30,50,80,.55); }
 
     /* ── Topic cards ── */
-    .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; max-width: 520px; }
-    @media (max-width:400px) { .topic-grid { grid-template-columns: repeat(2,1fr); } }
+    .topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; max-width: 520px; }
+    @media (min-width: 480px) { .topic-grid { grid-template-columns: repeat(3, 1fr); } }
     .topic-card {
       padding: 20px 10px; text-align: center; cursor: pointer;
       border-radius: 20px; border: 3px solid rgba(255,255,255,.85);
@@ -125,7 +130,7 @@
     .topic-card .t-free { font-size: .65rem; font-weight: 800; background: #10B981; color: #fff; border-radius: 50px; padding: 2px 8px; display: inline-block; }
 
     /* ── Game screen ── */
-    .game-wrap { width: 100%; max-width: 520px; }
+    .game-wrap { width: 100%; max-width: 520px; min-width: 0; }
     .game-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
     .topic-pill {
       display: flex; align-items: center; gap: 6px;
@@ -183,7 +188,7 @@
     .stars-bar { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; font-family: var(--font-d); font-size: 1rem; color: #8B6000; background: linear-gradient(135deg, #FFF3D0, #FFE8A0); border: 2px solid #FFB800; border-radius: 50px; padding: 7px 22px; }
 
     /* ── Result screen ── */
-    .result-wrap { width: 100%; max-width: 480px; text-align: center; }
+    .result-wrap { width: 100%; max-width: 480px; min-width: 0; text-align: center; }
     .score-big { font-family: var(--font-d); font-size: 5rem; line-height: 1; color: var(--orange); }
     .score-sub { font-weight: 700; color: #006080; margin-bottom: 28px; }
     /* Locked levels preview */
